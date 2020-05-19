@@ -1,0 +1,9 @@
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\bin\Debug\netstandard2.0\Logic_Layer.deps.json
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\bin\Debug\netstandard2.0\Logic_Layer.dll
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\bin\Debug\netstandard2.0\Logic_Layer.pdb
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\obj\Debug\netstandard2.0\Logic_Layer.csprojAssemblyReference.cache
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\obj\Debug\netstandard2.0\Logic_Layer.csproj.CoreCompileInputs.cache
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\obj\Debug\netstandard2.0\Logic_Layer.AssemblyInfoInputs.cache
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\obj\Debug\netstandard2.0\Logic_Layer.AssemblyInfo.cs
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\obj\Debug\netstandard2.0\Logic_Layer.dll
+C:\Users\Pouki\source\repos\_S2\_Asp.Net\S2_Pizzaria\Logic_Layer\obj\Debug\netstandard2.0\Logic_Layer.pdb

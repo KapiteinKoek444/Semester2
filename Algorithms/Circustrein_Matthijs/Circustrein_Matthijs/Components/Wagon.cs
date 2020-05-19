@@ -7,7 +7,7 @@ namespace CircusTrein_Opdracht.Components
 {
 	public class Wagon
 	{
-		private List<Animal> FilledAnimals = new List<Animal>();
+		public readonly List<Animal> FilledAnimals = new List<Animal>();
 		private readonly int MaxWeight;
 
 		public Wagon(int weight = 10)

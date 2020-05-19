@@ -11,7 +11,7 @@ namespace Algorithm_ContainerMovement.Components
 	{
 		public Point Location { get; set; }
 
-		public AssignedShipContainer(float weight, float temperature, float value, Point location) : base(weight, temperature, value)
+		public AssignedShipContainer(float weight, bool cooled, bool valueable, Point location) : base(weight, cooled, valueable)
 		{
 			Location = location;
 		}

@@ -10,14 +10,14 @@ namespace Algorithm_ContainerMovement.Components
 	public class ShipContainer
 	{
 		public float Weight { get; set; }
-		public float Temperature { get; set; }
-		public float Value { get; set; }
+		public bool Cooled { get; set; }
+		public bool Valueable { get; set; }
 
-		public ShipContainer(float weight, float temperature, float value)
+		public ShipContainer(float weight, bool cooled, bool valueable)
 		{
 			Weight = weight;
-			Temperature = temperature;
-			Value = value;
+			Cooled = cooled;
+			Valueable = valueable;
 		}
 	}
 }

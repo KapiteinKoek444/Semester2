@@ -6,13 +6,13 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Algorithm_ContainerMovement.Components
 {
 	public class Ship
 	{
-		public List<AssignedShipContainer> Containers = new List<AssignedShipContainer>();
-		private readonly int maxWeight = 120000;
+		public readonly List<AssignedShipContainer> Containers = new List<AssignedShipContainer>();
 
 		public Size Size { get; set; }
 		public float MaxWeight { get; set; }
@@ -23,21 +23,23 @@ namespace Algorithm_ContainerMovement.Components
 			MaxWeight = maxweight;
 		}
 
-		public void AddContainer(ShipContainer container, Point point)
+		public bool AddContainer(ShipContainer container, Point point)
 		{
 			if (CheckContainer(container, point))
 			{
 				Point position = point;
-				AssignedShipContainer assignedContainer = new AssignedShipContainer(container.Weight, container.Temperature, container.Value, position);
+				AssignedShipContainer assignedContainer = new AssignedShipContainer(container.Weight, container.Cooled, container.Valueable, position);
 				Containers.Add(assignedContainer);
+				return true;
 			}
 			else
 			{
-
+				MessageBox.Show("Error, could not add container");
+				return false;
 			}
 		}
 
-		public bool CheckContainer(ShipContainer container, Point point)
+		private bool CheckContainer(ShipContainer container, Point point)
 		{
 			float totalWeight = Containers.Sum(x => x.Weight);
 			
@@ -47,17 +49,17 @@ namespace Algorithm_ContainerMovement.Components
 					return false;
 				if(!CheckDoubles(point))
 					return false;
-				if (container.Value >= 3000)
+				if (container.Valueable)
 					if (!CheckNeighbors(point))
 						return false;
-				if (container.Temperature <= 15)
+				if (container.Cooled)
 					if (!CheckRow(point))
 						return false;
 			}
 			return true;
 		}
 
-		public bool CheckDoubles(Point point)
+		private bool CheckDoubles(Point point)
 		{
 			foreach (var container in Containers)
 				if (point == container.Location)
@@ -66,14 +68,14 @@ namespace Algorithm_ContainerMovement.Components
 			return true;
 		}
 
-		public bool CheckRow(Point point)
+		private bool CheckRow(Point point)
 		{
 			if (point.Y == 0)
 				return true;
 			return false;
 		}
 
-		public bool CheckNeighbors(Point point)
+		private bool CheckNeighbors(Point point)
 		{
 			int percentage = 3;
 			int neighbors = 0;
