@@ -38,6 +38,11 @@
 			// numUDCount
 			// 
 			this.numUDCount.Location = new System.Drawing.Point(13, 13);
+			this.numUDCount.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
 			this.numUDCount.Minimum = new decimal(new int[] {
             3,
             0,

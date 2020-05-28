@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pancake.cs" />
+    <Compile Include="Components\Pancake.cs" />
+    <Compile Include="Components\PancakePanel.cs" />
+    <Compile Include="Components\PancakeStack.cs" />
+    <Compile Include="Components\StackFactory.cs" />
     <Compile Include="Pancakes.cs">
       <SubType>Form</SubType>
     </Compile>
