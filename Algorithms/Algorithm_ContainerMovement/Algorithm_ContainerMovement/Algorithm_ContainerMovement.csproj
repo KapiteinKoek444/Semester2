@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Components\AssignedShipContainer.cs" />
     <Compile Include="Components\ComponentFactory.cs" />
+    <Compile Include="Components\ContainerLayer.cs" />
     <Compile Include="Components\Dock.cs" />
     <Compile Include="Components\ShipContainer.cs" />
     <Compile Include="Components\Ship.cs" />
