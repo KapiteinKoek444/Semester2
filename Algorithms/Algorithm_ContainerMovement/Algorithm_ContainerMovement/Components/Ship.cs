@@ -28,6 +28,91 @@ namespace Algorithm_ContainerMovement.Components
 			MaxWeight = maxweight;
 		}
 
+		public bool AddCooledContainer(ShipContainer c)
+		{
+			for (int i = 0; i < Size.Width; i++)
+			{
+				for (int j = 0; j < Layers.Length; j++)
+				{
+					Point pnt = new Point(0, i);
+					int height = j;
+					if (CheckOccupation(pnt, height))
+					{
+						AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Cooled, c.Valueable, pnt, height);
+						Layers[height].Containers.Add(cnt);
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		public bool AddNormalContainer(ShipContainer c)
+		{
+			for (int x = 0; x < Size.Width; x++)
+			{
+				for (int y = 0; y < Size.Height; y++)
+				{
+					for (int z = 0; z < Layers.Length; z++)
+					{
+						Point pnt = new Point(x, y);
+						int height = z;
+						if (CheckOccupation(pnt, height))
+						{
+							AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Cooled, c.Valueable, pnt, height);
+							Layers[height].Containers.Add(cnt);
+							return true;
+						}
+					}
+				}
+			}
+
+			return false;
+		}
+
+		public bool AddValueableContainer(ShipContainer c)
+		{
+			for (int x = 0; x < Size.Width; x++)
+			{
+				for (int y = 0; y < Size.Height; y++)
+				{
+					for (int z = 0; z < Layers.Length; z++)
+					{
+						Point pnt = new Point(x, y);
+						int height = z;
+						if (CheckOccupation(pnt, height))
+						{
+							if (CheckNeighbors(pnt, height))
+							{
+								AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Cooled, c.Valueable, pnt, height);
+								Layers[height].Containers.Add(cnt);
+								return true;
+							}
+						}
+					}
+				}
+			}
+
+			return false;
+		}
+
+		public bool AddContainer(ShipContainer container, Point point, int height)
+		{
+			if (CheckContainerFit(container, point, height))
+			{
+				AssignedShipContainer assignedContainer = new AssignedShipContainer(container.Weight, container.Cooled, container.Valueable, point, height);
+				Layers[height].Containers.Add(assignedContainer);
+				return true;
+			}
+			else
+			{
+				MessageBox.Show("Container could not be added");
+				return false;
+			}
+
+		}
+
 		public bool CheckContainerFit(ShipContainer container, Point point, int height)
 		{
 			if (CheckWeight(container))
@@ -49,6 +134,8 @@ namespace Algorithm_ContainerMovement.Components
 				if (!CheckRow(point))
 					return false;
 
+
+			return true;
 		}
 
 		private bool CheckContainersBelow(Point point, int height)

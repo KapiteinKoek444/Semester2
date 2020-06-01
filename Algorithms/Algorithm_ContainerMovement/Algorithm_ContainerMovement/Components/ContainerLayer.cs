@@ -14,7 +14,5 @@ namespace Algorithm_ContainerMovement.Components
 		{
 			
 		}
-
-
 	}
 }
