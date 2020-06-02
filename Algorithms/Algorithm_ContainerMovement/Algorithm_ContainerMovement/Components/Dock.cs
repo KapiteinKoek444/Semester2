@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Algorithm_ContainerMovement.Components
 
 		public void AddContainer(List<ShipContainer> containers)
 		{
-			foreach(var con in containers)
+			foreach (var con in containers)
 				UnAssignedContainers.Add(con);
 		}
 
@@ -35,7 +36,10 @@ namespace Algorithm_ContainerMovement.Components
 		public bool SolveContainers()
 		{
 			OrderContainers();
-			
+			if (UnAssignedContainers.Sum(x => x.Weight) < Ship.MaxWeight)
+				return PlaceCooledContainers() && PlaceNormalContainers() && PlaceValueableContainers() && CheckBalance();
+			else
+				return false;
 		}
 
 		public void OrderContainers()
@@ -56,6 +60,11 @@ namespace Algorithm_ContainerMovement.Components
 		public bool PlaceValueableContainers()
 		{
 			return UnAssignedContainers.Where(x => x.Valueable == true).All(c => Ship.AddValueableContainer(c) != false);
+		}
+
+		public bool CheckBalance()
+		{
+			return Ship.CheckBalance();
 		}
 	}
 }

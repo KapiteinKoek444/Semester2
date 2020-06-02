@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,7 @@ namespace Algorithm_ContainerMovement.Components
 	public class Ship
 	{
 		public readonly ContainerLayer[] Layers = new ContainerLayer[3];
-		private readonly float offset = 1000;
+		private readonly float offset;
 
 		public Size Size { get; set; }
 		public float MaxWeight { get; set; }
@@ -26,6 +27,25 @@ namespace Algorithm_ContainerMovement.Components
 		{
 			Size = size;
 			MaxWeight = maxweight;
+			offset = 0.20f * MaxWeight;
+		}
+
+		public bool MinimumWeight()
+		{
+			float weight = 0f;
+
+			foreach (var Layer in Layers)
+			{
+				foreach (var container in Layer.Containers)
+				{
+					weight += container.Weight;
+				}
+			}
+
+			if(weight <= 0.5f * MaxWeight)
+				return false;
+
+			return true;
 		}
 
 		public bool AddCooledContainer(ShipContainer c)
@@ -111,6 +131,29 @@ namespace Algorithm_ContainerMovement.Components
 				return false;
 			}
 
+		}
+
+		public bool CheckBalance()
+		{
+			foreach (var Layer in Layers)
+			{
+				foreach (var container in Layer.Containers)
+				{
+					if(container.Location.Y == 0)
+					{
+						container.Weight += LeftWeight;
+					}
+					else if(container.Location.Y == 2)
+					{
+						container.Weight += RightWeight;
+					}
+				}
+			}
+
+			if((LeftWeight - (LeftWeight * 0.2f)) > RightWeight || (RightWeight - (RightWeight * 0.2f)) > LeftWeight)
+				return false; 
+
+			return true;
 		}
 
 		public bool CheckContainerFit(ShipContainer container, Point point, int height)
