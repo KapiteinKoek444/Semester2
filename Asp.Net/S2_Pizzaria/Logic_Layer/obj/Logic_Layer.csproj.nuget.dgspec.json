@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pouki\\source\\repos\\S2_Pizzaria\\Logic_Layer\\Logic_Layer.csproj": {}
+    "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Asp.Net\\S2_Pizzaria\\Logic_Layer\\Logic_Layer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pouki\\source\\repos\\S2_Pizzaria\\Logic_Layer\\Logic_Layer.csproj": {
+    "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Asp.Net\\S2_Pizzaria\\Logic_Layer\\Logic_Layer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pouki\\source\\repos\\S2_Pizzaria\\Logic_Layer\\Logic_Layer.csproj",
+        "projectUniqueName": "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Asp.Net\\S2_Pizzaria\\Logic_Layer\\Logic_Layer.csproj",
         "projectName": "Logic_Layer",
-        "projectPath": "C:\\Users\\Pouki\\source\\repos\\S2_Pizzaria\\Logic_Layer\\Logic_Layer.csproj",
+        "projectPath": "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Asp.Net\\S2_Pizzaria\\Logic_Layer\\Logic_Layer.csproj",
         "packagesPath": "C:\\Users\\Pouki\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pouki\\source\\repos\\S2_Pizzaria\\Logic_Layer\\obj\\",
+        "outputPath": "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Asp.Net\\S2_Pizzaria\\Logic_Layer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
