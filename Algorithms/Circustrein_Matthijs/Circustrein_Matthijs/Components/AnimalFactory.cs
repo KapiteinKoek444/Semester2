@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Circustrein_Matthijs.Components.FoodEnum;
 
 namespace Circustrein_Matthijs.Components
 {
@@ -17,10 +18,10 @@ namespace Circustrein_Matthijs.Components
 
 			for (int i = 0; i < amount; i++)
 			{
+				Animal animal;
+
 				int chapping = rnd.Next(2);
 				int size = rnd.Next(4);
-
-				bool carnivore;
 
 				if (size == 0)
 					size = 1;
@@ -30,11 +31,9 @@ namespace Circustrein_Matthijs.Components
 					size = 5;
 
 				if (chapping == 0)
-					carnivore = true;
+					animal = new Animal(foodType.Carnivore , size);
 				else
-					carnivore = false;
-
-				Animal animal = new Animal(carnivore, size);
+					animal = new Animal(foodType.Herbivore, size);
 
 				animals.Add(animal);
 			}
@@ -58,7 +57,7 @@ namespace Circustrein_Matthijs.Components
 				else
 					size = 5;
 
-				Animal animal = new Animal(true, size);
+				Animal animal = new Animal(foodType.Carnivore , size);
 				animals.Add(animal);
 			}
 
@@ -81,20 +80,20 @@ namespace Circustrein_Matthijs.Components
 				else
 					size = 5;
 
-				Animal animal = new Animal(false, size);
+				Animal animal = new Animal(foodType.Herbivore, size);
 				animals.Add(animal);
 			}
 
 			return animals;
 		}
 
-		public static List<Animal> GenerateSelectAnimal(bool Carnivore, int Size, int amount)
+		public static List<Animal> GenerateSelectAnimal(foodType type, int Size, int amount)
 		{
 			List<Animal> Animals = new List<Animal>();
 
 			for (int i = 0; i < amount; i++)
 			{
-				Animal animal = new Animal(Carnivore, Size);
+				Animal animal = new Animal(type, Size);
 				Animals.Add(animal);
 			}
 

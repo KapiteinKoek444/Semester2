@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static Circustrein_Matthijs.Components.FoodEnum;
 
 namespace CircusTrein_Opdracht.Components
 {
@@ -28,32 +29,13 @@ namespace CircusTrein_Opdracht.Components
 			if (FilledAnimals.Sum(animal => animal.Size) + newAnimal.Size > MaxWeight)
 				return false;
 
-			if (FilledAnimals.Any(animal => animal.Carnivore))
-				return !(newAnimal.Carnivore || newAnimal.Size <= FilledAnimals.First(animal => animal.Carnivore).Size);
+			if (FilledAnimals.Any(animal => animal.Food == foodType.Carnivore))
+				return !(newAnimal.Food == foodType.Carnivore || newAnimal.Size <= FilledAnimals.First(animal => animal.Food == foodType.Carnivore).Size);
 
 			if (FilledAnimals.Count > 0)
-				return !(newAnimal.Carnivore && newAnimal.Size > FilledAnimals.Min(animal => animal.Size));
+				return !(newAnimal.Food == foodType.Carnivore && newAnimal.Size > FilledAnimals.Min(animal => animal.Size));
 
 			return true;
-		}
-
-		public List<string> ConvertWagonToString(int i)
-		{
-			List<string> wagonString = new List<string>();
-
-			int amount = CalculateCarryweight();
-
-			string wagonName = $"Wagon{i} ({amount}/10): ";
-			wagonString.Add(wagonName);
-
-			for (int j = 0; j < FilledAnimals.Count; j++)
-			{
-				string animal;
-				animal = "   -" + FilledAnimals[j].ConvertNametoString(j + 1);
-				wagonString.Add(animal);
-			}
-
-			return wagonString;
 		}
 
 		public int CalculateCarryweight()

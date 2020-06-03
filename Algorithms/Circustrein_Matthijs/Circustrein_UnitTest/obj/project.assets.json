@@ -5737,11 +5737,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pouki\\source\\repos\\_S2\\_Algorithms\\Circustrein_Matthijs\\Circustrein_UnitTest\\Circustrein_UnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Algorithms\\Circustrein_Matthijs\\Circustrein_UnitTest\\Circustrein_UnitTest.csproj",
       "projectName": "Circustrein_UnitTest",
-      "projectPath": "C:\\Users\\Pouki\\source\\repos\\_S2\\_Algorithms\\Circustrein_Matthijs\\Circustrein_UnitTest\\Circustrein_UnitTest.csproj",
+      "projectPath": "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Algorithms\\Circustrein_Matthijs\\Circustrein_UnitTest\\Circustrein_UnitTest.csproj",
       "packagesPath": "C:\\Users\\Pouki\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pouki\\source\\repos\\_S2\\_Algorithms\\Circustrein_Matthijs\\Circustrein_UnitTest\\obj\\",
+      "outputPath": "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Algorithms\\Circustrein_Matthijs\\Circustrein_UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -5761,8 +5761,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Pouki\\source\\repos\\_S2\\_Algorithms\\Circustrein_Matthijs\\Circustrein_Matthijs\\Circustrein_Matthijs.csproj": {
-              "projectPath": "C:\\Users\\Pouki\\source\\repos\\_S2\\_Algorithms\\Circustrein_Matthijs\\Circustrein_Matthijs\\Circustrein_Matthijs.csproj"
+            "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Algorithms\\Circustrein_Matthijs\\Circustrein_Matthijs\\Circustrein_Matthijs.csproj": {
+              "projectPath": "C:\\Users\\Pouki\\Documents\\GitHub\\Semester2\\Algorithms\\Circustrein_Matthijs\\Circustrein_Matthijs\\Circustrein_Matthijs.csproj"
             }
           }
         }
@@ -5808,7 +5808,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

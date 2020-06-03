@@ -31,7 +31,7 @@ namespace Circustrein_UnitTest
 			int amount = 5;
 			for (int i = 0; i < amount; i++)
 			{
-				Animal animal = new Animal(true, 3);
+				Animal animal = new Animal(FoodEnum.foodType.Carnivore, 3);
 				expectedCarnivoreList.Add(animal);
 			}
 
@@ -39,7 +39,7 @@ namespace Circustrein_UnitTest
 			List<Animal> actualCarnivoreList = AnimalFactory.GenerateCarnivores(amount);
 
 			//Assert
-			Assert.AreEqual(expectedCarnivoreList[4].Carnivore, actualCarnivoreList[4].Carnivore);
+			Assert.AreEqual(expectedCarnivoreList[4].Food, actualCarnivoreList[4].Food);
 		}
 
 		[TestMethod]
@@ -50,7 +50,7 @@ namespace Circustrein_UnitTest
 			int amount = 5;
 			for (int i = 0; i < amount; i++)
 			{
-				Animal animal = new Animal(false, 3);
+				Animal animal = new Animal(FoodEnum.foodType.Herbivore, 3);
 				expectedHerbivoreList.Add(animal);
 			}
 
@@ -58,24 +58,24 @@ namespace Circustrein_UnitTest
 			List<Animal> actualHerbivoreList = AnimalFactory.GenerateHerbivores(amount);
 
 			//Assert
-			Assert.AreEqual(expectedHerbivoreList[2].Carnivore, actualHerbivoreList[2].Carnivore);
+			Assert.AreEqual(expectedHerbivoreList[2].Food, actualHerbivoreList[2].Food);
 		}
 
 		[TestMethod]
 		public void GenerateSelectedAnimals_Test()
 		{
 			//Arrange
-			Animal expectedAnimal = new Animal(true, 3);
+			Animal expectedAnimal = new Animal(FoodEnum.foodType.Carnivore, 3);
 
 			int amount = 2;
 			int size = 3;
-			bool carnivore = true;
+			FoodEnum.foodType food = FoodEnum.foodType.Carnivore;
 
 			//Act
-			List<Animal> testingAnimals = AnimalFactory.GenerateSelectAnimal(carnivore, size, amount);
+			List <Animal> testingAnimals = AnimalFactory.GenerateSelectAnimal(food, size, amount);
 
 			//Assert
-			Assert.AreEqual(expectedAnimal.Carnivore, testingAnimals[1].Carnivore);
+			Assert.AreEqual(expectedAnimal.Food, testingAnimals[1].Food);
 			Assert.AreEqual(expectedAnimal.Size, testingAnimals[1].Size);
 		}
 
@@ -84,8 +84,8 @@ namespace Circustrein_UnitTest
 		{
 			//Arrange
 			List<Animal> expectedAnimalList = new List<Animal>();
-			Animal animal1 = new Animal(true, 5);
-			Animal animal2 = new Animal(false, 1);
+			Animal animal1 = new Animal(FoodEnum.foodType.Carnivore, 5);
+			Animal animal2 = new Animal(FoodEnum.foodType.Herbivore, 1);
 			expectedAnimalList.Add(animal1);
 			expectedAnimalList.Add(animal2);
 

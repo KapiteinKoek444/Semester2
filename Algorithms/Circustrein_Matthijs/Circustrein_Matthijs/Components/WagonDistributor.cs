@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Circustrein_Matthijs.Components.FoodEnum;
 
 namespace Circustrein_Matthijs.Components
 {
@@ -15,12 +16,12 @@ namespace Circustrein_Matthijs.Components
 			List<Wagon> filledWagons = new List<Wagon>();
 			AllAnimals = AllAnimals.OrderBy(animal => animal.Size).ToList();
 
-			List<Animal> Herbivores = AllAnimals.Where(animal => !animal.Carnivore).ToList();
+			List<Animal> Herbivores = AllAnimals.Where(animal => animal.Food != foodType.Carnivore).ToList();
 			List<Wagon> wagons = new List<Wagon>();
 
 			if (Herbivores.Count != AllAnimals.Count)
 			{
-				wagons = AllAnimals.Where(animal => animal.Carnivore).Select(animal =>
+				wagons = AllAnimals.Where(animal => animal.Food == foodType.Carnivore).Select(animal =>
 				{
 					var newWagon = new Wagon();
 					newWagon.AddAnimal(animal);

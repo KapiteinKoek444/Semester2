@@ -1,30 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static Circustrein_Matthijs.Components.FoodEnum;
 
 namespace CircusTrein_Opdracht.Components
 {
 	public class Animal
 	{
-		public bool Carnivore { get; set; }
+		public foodType Food { get; set; }
 		public int Size { get; set; }
 
-		public Animal(bool carnivore, int size)
+		public Animal(foodType food, int size)
 		{
-			Carnivore = carnivore;
+			Food = food;
 			Size = size;
-		}
-
-		public string ConvertNametoString(int i)
-		{
-			string name;
-
-			if (Carnivore)
-				name = $"Animal{i}: {Size}, Carnivore";
-			else
-				name = $"Animal{i}: {Size}, Herbivore";
-
-			return name;
 		}
 	}
 }

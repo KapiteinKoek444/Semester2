@@ -23,5 +23,26 @@ namespace Circustrein_UnitTest
 			//Assert
 			Assert.AreEqual(expectedWagonAmount, actualWagonList.Count);
 		}
+
+		[TestMethod]
+		public void AllAnimalsAdded_Test()
+		{
+			//Arrange
+			int excpected = 10;
+
+			List<Wagon> wagons = new List<Wagon>();
+			List<Animal> animals = AnimalFactory.GenerateRandomAnimals(10);
+			//Act
+			wagons = WagonDistributor.Distribute(animals);
+			int actual = 0;
+			foreach (var wagon in wagons)
+			{
+				actual += wagon.FilledAnimals.Count;
+			}
+
+			//Assert
+			Assert.AreEqual(excpected, actual);
+		}
+
 	}
 }

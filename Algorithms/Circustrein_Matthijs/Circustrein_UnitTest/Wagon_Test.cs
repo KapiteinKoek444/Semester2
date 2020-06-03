@@ -15,8 +15,8 @@ namespace Circustrein_UnitTest
 			int expectedAmount = 2;
 			List<Animal> animalList = new List<Animal>();
 
-			Animal animal2 = new Animal(false, 5);
-			Animal animal1 = new Animal(true, 3);
+			Animal animal2 = new Animal(FoodEnum.foodType.Herbivore, 5);
+			Animal animal1 = new Animal(FoodEnum.foodType.Carnivore, 3);
 
 			animalList.Add(animal1);
 			animalList.Add(animal2);
@@ -36,7 +36,7 @@ namespace Circustrein_UnitTest
 		{
 			//Arrange
 			int expectedCarryWeight = 5;
-			Animal animal = new Animal(true, 5);
+			Animal animal = new Animal(FoodEnum.foodType.Carnivore, 5);
 
 			Wagon wagon = new Wagon();
 			wagon.AddAnimal(animal);
@@ -55,8 +55,8 @@ namespace Circustrein_UnitTest
 			bool expectedOutcome = false;
 			Wagon wagon = new Wagon();
 
-			Animal carnivore = new Animal(true, 5);
-			Animal herbivore = new Animal(false, 3);
+			Animal carnivore = new Animal(FoodEnum.foodType.Carnivore, 5);
+			Animal herbivore = new Animal(FoodEnum.foodType.Herbivore, 3);
 
 			wagon.AddAnimal(carnivore);
 			//Act
@@ -64,30 +64,6 @@ namespace Circustrein_UnitTest
 
 			//Assert
 			Assert.AreEqual(expectedOutcome, actualOutcome);
-		}
-
-		[TestMethod]
-		public void ConvertWagonToString_Test()
-		{
-			//Arrange
-			string expectedString = "Wagon1 (9/10): ";
-
-			Wagon wagon = new Wagon();
-			
-			Animal animal1 = new Animal(true, 1);
-			Animal animal2 = new Animal(false, 5);
-			Animal animal3 = new Animal(false, 3);
-
-
-			wagon.AddAnimal(animal1);
-			wagon.AddAnimal(animal2);
-			wagon.AddAnimal(animal3);
-
-			//Act
-			List<string> actualString = wagon.ConvertWagonToString(1);
-
-			//Assert
-			Assert.AreEqual(expectedString, actualString[0]);
 		}
 	}
 }

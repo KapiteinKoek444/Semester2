@@ -157,13 +157,14 @@
 			// 
 			this.cBCarnivore.FormattingEnabled = true;
 			this.cBCarnivore.Items.AddRange(new object[] {
-            "true",
-            "false"});
+            "Herbivore",
+            "Carnivore",
+            "Omnivore"});
 			this.cBCarnivore.Location = new System.Drawing.Point(12, 79);
 			this.cBCarnivore.Name = "cBCarnivore";
 			this.cBCarnivore.Size = new System.Drawing.Size(109, 24);
 			this.cBCarnivore.TabIndex = 11;
-			this.cBCarnivore.Text = "true";
+			this.cBCarnivore.Text = "Herbivore";
 			// 
 			// cBSize
 			// 
@@ -183,9 +184,9 @@
 			this.lblCarnivore.AutoSize = true;
 			this.lblCarnivore.Location = new System.Drawing.Point(12, 59);
 			this.lblCarnivore.Name = "lblCarnivore";
-			this.lblCarnivore.Size = new System.Drawing.Size(89, 17);
+			this.lblCarnivore.Size = new System.Drawing.Size(40, 17);
 			this.lblCarnivore.TabIndex = 13;
-			this.lblCarnivore.Text = "Is carnivore?";
+			this.lblCarnivore.Text = "Type";
 			// 
 			// lblSize
 			// 
