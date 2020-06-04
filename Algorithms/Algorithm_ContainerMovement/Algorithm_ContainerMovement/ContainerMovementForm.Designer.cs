@@ -28,86 +28,70 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.tControlShips = new System.Windows.Forms.TabControl();
-			this.btnAddDefaultShip = new System.Windows.Forms.Button();
-			this.tControlDistributor = new System.Windows.Forms.TabControl();
-			this.tPageManual = new System.Windows.Forms.TabPage();
-			this.tPageAlgorithm = new System.Windows.Forms.TabPage();
-			this.tControlDistributor.SuspendLayout();
-			this.tPageManual.SuspendLayout();
+			this.Solve = new System.Windows.Forms.Button();
+			this.console_Containers = new System.Windows.Forms.TextBox();
+			this.console_Ship = new System.Windows.Forms.TextBox();
+			this.CreateRandomContainers = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
-			// tControlShips
+			// Solve
 			// 
-			this.tControlShips.Location = new System.Drawing.Point(274, 12);
-			this.tControlShips.Name = "tControlShips";
-			this.tControlShips.SelectedIndex = 0;
-			this.tControlShips.Size = new System.Drawing.Size(633, 562);
-			this.tControlShips.TabIndex = 0;
+			this.Solve.Location = new System.Drawing.Point(12, 774);
+			this.Solve.Name = "Solve";
+			this.Solve.Size = new System.Drawing.Size(147, 23);
+			this.Solve.TabIndex = 0;
+			this.Solve.Text = "Solve";
+			this.Solve.UseVisualStyleBackColor = true;
+			this.Solve.Click += new System.EventHandler(this.Solve_Click);
 			// 
-			// btnAddDefaultShip
+			// console_Containers
 			// 
-			this.btnAddDefaultShip.Location = new System.Drawing.Point(7, 478);
-			this.btnAddDefaultShip.Name = "btnAddDefaultShip";
-			this.btnAddDefaultShip.Size = new System.Drawing.Size(237, 48);
-			this.btnAddDefaultShip.TabIndex = 1;
-			this.btnAddDefaultShip.Text = "Add Default Ship";
-			this.btnAddDefaultShip.UseVisualStyleBackColor = true;
-			this.btnAddDefaultShip.Click += new System.EventHandler(this.AddDefaultShip_Click);
+			this.console_Containers.Location = new System.Drawing.Point(173, 12);
+			this.console_Containers.Multiline = true;
+			this.console_Containers.Name = "console_Containers";
+			this.console_Containers.Size = new System.Drawing.Size(607, 784);
+			this.console_Containers.TabIndex = 1;
 			// 
-			// tControlDistributor
+			// console_Ship
 			// 
-			this.tControlDistributor.Controls.Add(this.tPageManual);
-			this.tControlDistributor.Controls.Add(this.tPageAlgorithm);
-			this.tControlDistributor.Location = new System.Drawing.Point(13, 13);
-			this.tControlDistributor.Name = "tControlDistributor";
-			this.tControlDistributor.SelectedIndex = 0;
-			this.tControlDistributor.Size = new System.Drawing.Size(255, 561);
-			this.tControlDistributor.TabIndex = 2;
+			this.console_Ship.Location = new System.Drawing.Point(786, 12);
+			this.console_Ship.Multiline = true;
+			this.console_Ship.Name = "console_Ship";
+			this.console_Ship.Size = new System.Drawing.Size(607, 784);
+			this.console_Ship.TabIndex = 2;
 			// 
-			// tPageManual
+			// CreateRandomContainers
 			// 
-			this.tPageManual.Controls.Add(this.btnAddDefaultShip);
-			this.tPageManual.Location = new System.Drawing.Point(4, 25);
-			this.tPageManual.Name = "tPageManual";
-			this.tPageManual.Padding = new System.Windows.Forms.Padding(3);
-			this.tPageManual.Size = new System.Drawing.Size(247, 532);
-			this.tPageManual.TabIndex = 0;
-			this.tPageManual.Text = "Manual";
-			this.tPageManual.UseVisualStyleBackColor = true;
-			// 
-			// tPageAlgorithm
-			// 
-			this.tPageAlgorithm.Location = new System.Drawing.Point(4, 25);
-			this.tPageAlgorithm.Name = "tPageAlgorithm";
-			this.tPageAlgorithm.Padding = new System.Windows.Forms.Padding(3);
-			this.tPageAlgorithm.Size = new System.Drawing.Size(247, 532);
-			this.tPageAlgorithm.TabIndex = 1;
-			this.tPageAlgorithm.Text = "Algorithm";
-			this.tPageAlgorithm.UseVisualStyleBackColor = true;
+			this.CreateRandomContainers.Location = new System.Drawing.Point(12, 745);
+			this.CreateRandomContainers.Name = "CreateRandomContainers";
+			this.CreateRandomContainers.Size = new System.Drawing.Size(147, 23);
+			this.CreateRandomContainers.TabIndex = 3;
+			this.CreateRandomContainers.Text = "RandomContainers";
+			this.CreateRandomContainers.UseVisualStyleBackColor = true;
+			this.CreateRandomContainers.Click += new System.EventHandler(this.CreateRandomContainers_Click);
 			// 
 			// ContainerMovementForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(919, 586);
-			this.Controls.Add(this.tControlDistributor);
-			this.Controls.Add(this.tControlShips);
+			this.ClientSize = new System.Drawing.Size(1405, 809);
+			this.Controls.Add(this.CreateRandomContainers);
+			this.Controls.Add(this.console_Ship);
+			this.Controls.Add(this.console_Containers);
+			this.Controls.Add(this.Solve);
 			this.Name = "ContainerMovementForm";
 			this.Text = "ContainerMoveMent";
-			this.tControlDistributor.ResumeLayout(false);
-			this.tPageManual.ResumeLayout(false);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.TabControl tControlShips;
-		private System.Windows.Forms.Button btnAddDefaultShip;
-		private System.Windows.Forms.TabControl tControlDistributor;
-		private System.Windows.Forms.TabPage tPageManual;
-		private System.Windows.Forms.TabPage tPageAlgorithm;
+		private System.Windows.Forms.Button Solve;
+		private System.Windows.Forms.TextBox console_Containers;
+		private System.Windows.Forms.TextBox console_Ship;
+		private System.Windows.Forms.Button CreateRandomContainers;
 	}
 }
 

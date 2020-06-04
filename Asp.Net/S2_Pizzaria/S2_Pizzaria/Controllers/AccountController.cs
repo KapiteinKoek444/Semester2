@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Logic_Layer.Entities.Users;
-using Logic_Layer.Factory;
-using Logic_Layer.Manager;
-using Logic_Layer.Models;
+using BusinessLogic.Factory;
+using BusinessLogic.Manager;
+using BusinessLogic.Manager.User;
+using BusinessLogic.Models;
 
 namespace S2_Pizzaria.Controllers
 {
@@ -22,18 +22,8 @@ namespace S2_Pizzaria.Controllers
 		[HttpPost]
 		public ActionResult Login(LoginModel customer)
 		{
-			var user = manager.Users.Where(x => x.Password == customer.Password && x.UName == customer.Uname).FirstOrDefault();
-
-
-			if (user != null)
-			{
-				return RedirectToAction("Index", "Home");
-			}
-			else
-			{
-				ModelState.AddModelError("", "Invalid user/pass");
-				return View();
-			}
+			manager.GetUser(customer.Uname, customer.Password);
+			return View();
 		}
 
 		public ActionResult RegisterUser()
@@ -42,10 +32,9 @@ namespace S2_Pizzaria.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult RegisterUser(UserModel customerModel)
+		public ActionResult RegisterUser(UserModel UserModel)
 		{
-			var customer = UserModelFactory.ConvertUser(customerModel);
-			manager.AddCustomer(customer);
+			manager.AddUser(UserModel);
 			return View();
 		}
 	}

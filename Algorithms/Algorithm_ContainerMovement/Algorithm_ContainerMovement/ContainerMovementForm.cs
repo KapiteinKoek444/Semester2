@@ -21,24 +21,53 @@ namespace Algorithm_ContainerMovement
 			dock = new Dock(); 
 		}
 
-		private void AddDefaultShip_Click(object sender, EventArgs e)
+		private void Solve_Click(object sender, EventArgs e)
 		{
-			Ship ship = ComponentFactory.GenerateDefaultShip();
-			dock.AddShip(ship);
-			VisualizeShip();
+			if (dock.SolveContainers())
+				MessageBox.Show("Succes");
+			else
+				MessageBox.Show(dock.UnAssignedContainers.Count.ToString());
+			
+			LogUnAssignedContainer();
+			LogShipContainers();
 		}
 
-		private void VisualizeShip()
+		private void CreateRandomContainers_Click(object sender, EventArgs e)
 		{
-			tControlShips.Controls.Clear();
+			dock.AddContainer(ComponentFactory.GenerateRandomContainers(10));
+			LogUnAssignedContainer();
+		}
 
-			for (int i = 0; i < dock.Ships.Count; i++)
+		private void LogShipContainers()
+		{
+			console_Ship.Text = "";
+			console_Ship.Text += "Ship 1:";
+			console_Ship.Text += "\r\n";
+			console_Ship.Text += dock.Ship.LeftWeight.ToString();
+			console_Ship.Text += "\r\n";
+			console_Ship.Text += dock.Ship.RightWeight.ToString();
+			console_Ship.Text += "\r\n";
+			console_Ship.Text += dock.Ship.Weight.ToString();
+			console_Ship.Text += "\r\n";
+			console_Ship.Text += dock.Ship.MaxWeight.ToString();
+
+			foreach (var layer in dock.Ship.Layers)
+				foreach (var Container in layer.Containers)
+				{
+					
+				}
+		}
+
+		private void LogUnAssignedContainer()
+		{
+			console_Containers.Text = "";
+
+			foreach (var con in dock.UnAssignedContainers)
 			{
-				TabPage page = new TabPage();
-				page.Name = $"ship {i}";
-				page.Text = $"ship {i}";
-
-				tControlShips.Controls.Add(page);
+				console_Containers.Text += con.Type.ToString();
+				console_Containers.Text += " "; 
+				console_Containers.Text += con.Weight.ToString();
+				console_Containers.Text += "\r\n";
 			}
 		}
 	}

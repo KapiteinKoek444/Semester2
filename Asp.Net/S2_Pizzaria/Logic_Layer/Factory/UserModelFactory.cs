@@ -1,4 +1,5 @@
-﻿using Logic_Layer.Entities.Users;
+﻿using Data_Layer.Entities.Users;
+using Data_Layer.Users;
 using Logic_Layer.Models;
 using System;
 using System.Collections.Generic;

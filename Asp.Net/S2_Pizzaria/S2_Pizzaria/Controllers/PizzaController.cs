@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Logic_Layer.Entities.Pizza_Components;
 
 namespace S2_Pizzaria.Controllers
 {
@@ -19,7 +18,7 @@ namespace S2_Pizzaria.Controllers
             return View();
         }
 
-        public ActionResult CustomizePizza(Pizza pizza)
+        public ActionResult CustomizePizza()
         {
             return View();
         }

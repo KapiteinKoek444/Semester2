@@ -50,6 +50,7 @@
     <Compile Include="Components\ComponentFactory.cs" />
     <Compile Include="Components\ContainerLayer.cs" />
     <Compile Include="Components\Dock.cs" />
+    <Compile Include="Components\Enums\Types.cs" />
     <Compile Include="Components\ShipContainer.cs" />
     <Compile Include="Components\Ship.cs" />
     <Compile Include="ContainerMovementForm.cs">

@@ -1,6 +1,6 @@
-﻿using Logic_Layer.Entities.Pizza_Components;
-using Logic_Layer.Entities.Pizza_Components.IngredientTypes;
-using Logic_Layer.TemporaryData;
+﻿using Data_Layer.Entities.Pizza_Components;
+using Data_Layer.Entities.Pizza_Components.IngredientTypes;
+using Data_Layer.TemporaryData;
 using System;
 using System.Collections.Generic;
 using System.Text;

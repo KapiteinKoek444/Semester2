@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Algorithm_ContainerMovement.Components.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -17,25 +18,31 @@ namespace Algorithm_ContainerMovement.Components
 
 			for (int i = 0; i < amount; i++)
 			{
-				float weight = rnd.Next(4, 30);
+				ShipContainer container;
+				float weight = rnd.Next(4, 10);
 				weight = GetActualCount(weight);
-				bool cooled = Random.Equals(true, false);
-				bool valueable = Random.Equals(true, false);
+				int type = rnd.Next(3);
 
-				ShipContainer container = new ShipContainer(weight, cooled, valueable);
+				if (type == 1 )
+					container = new ShipContainer(weight, Types.ContainerTypes.Cooled);
+				else if (type == 2)
+					container = new ShipContainer(weight, Types.ContainerTypes.Regular);
+				else
+					container = new ShipContainer(weight, Types.ContainerTypes.Valueable);
+
 				containers.Add(container);
 			}
 
 			return containers;
 		}
 
-		public static List<ShipContainer> GenereateSpecificContainer(float weight, bool temperature, bool value, int amount)
+		public static List<ShipContainer> GenereateSpecificContainer(float weight, Types.ContainerTypes type, int amount)
 		{
 			List<ShipContainer> containers = new List<ShipContainer>();
 
 			for (int i = 0; i < amount; i++)
 			{
-				ShipContainer container = new ShipContainer(weight, temperature, value);
+				ShipContainer container = new ShipContainer(weight, type);
 				containers.Add(container);
 			}
 
@@ -50,7 +57,7 @@ namespace Algorithm_ContainerMovement.Components
 				return currentList;
 			else
 			{
-				foreach(var container in mergeList)
+				foreach (var container in mergeList)
 				{
 					currentList.Add(container);
 				}

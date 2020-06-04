@@ -13,11 +13,12 @@ namespace Algorithm_ContainerMovement.Components
 {
 	public class Ship
 	{
-		public readonly ContainerLayer[] Layers = new ContainerLayer[3];
-		private readonly float offset;
+		public readonly ContainerLayer[] Layers;
+		private readonly float MinimumWeight;
 
 		public Size Size { get; set; }
 		public float MaxWeight { get; set; }
+
 		public float Weight { get; set; }
 		public float LeftWeight { get; set; }
 		public float RightWeight { get; set; }
@@ -27,38 +28,34 @@ namespace Algorithm_ContainerMovement.Components
 		{
 			Size = size;
 			MaxWeight = maxweight;
-			offset = 0.20f * MaxWeight;
+			MinimumWeight = MaxWeight * 0.5f;
+
+
+			Layers = new ContainerLayer[3];
+			SetLayers();
 		}
 
-		public bool MinimumWeight()
+		private void SetLayers()
 		{
-			float weight = 0f;
-
-			foreach (var Layer in Layers)
+			for (int i = 0; i < Layers.Length; i++)
 			{
-				foreach (var container in Layer.Containers)
-				{
-					weight += container.Weight;
-				}
+				Layers[i] = new ContainerLayer();
 			}
-
-			if(weight <= 0.5f * MaxWeight)
-				return false;
-
-			return true;
 		}
 
+		//Adding containers
+		//Cooled
 		public bool AddCooledContainer(ShipContainer c)
 		{
-			for (int i = 0; i < Size.Width; i++)
+			for (int i = 0; i < Layers.Length -1; i++)
 			{
-				for (int j = 0; j < Layers.Length; j++)
+				for (int j = 0; j < Size.Width; j++)
 				{
-					Point pnt = new Point(0, i);
-					int height = j;
+					Point pnt = new Point(0, j);
+					int height = i;
 					if (CheckOccupation(pnt, height))
 					{
-						AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Cooled, c.Valueable, pnt, height);
+						AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Type, pnt, height);
 						Layers[height].Containers.Add(cnt);
 						return true;
 					}
@@ -68,21 +65,28 @@ namespace Algorithm_ContainerMovement.Components
 			return false;
 		}
 
-		public bool AddNormalContainer(ShipContainer c)
+		//Valueable
+		public bool AddValueableContainer(ShipContainer c, int side)
 		{
-			for (int x = 0; x < Size.Width; x++)
+			for (int z = 0; z < Layers.Length -1; z++)
 			{
-				for (int y = 0; y < Size.Height; y++)
+				for (int x = 0; x < Size.Width; x++)
 				{
-					for (int z = 0; z < Layers.Length; z++)
+					for (int y = 0; y < Size.Height; y++)
 					{
 						Point pnt = new Point(x, y);
 						int height = z;
-						if (CheckOccupation(pnt, height))
+						if (pnt.Y == side)
 						{
-							AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Cooled, c.Valueable, pnt, height);
-							Layers[height].Containers.Add(cnt);
-							return true;
+							if (CheckOccupation(pnt, height))
+							{
+								if (CheckNeighbors(pnt, height))
+								{
+									AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Type, pnt, height);
+									Layers[height].Containers.Add(cnt);
+									return true;
+								}
+							}
 						}
 					}
 				}
@@ -91,21 +95,23 @@ namespace Algorithm_ContainerMovement.Components
 			return false;
 		}
 
-		public bool AddValueableContainer(ShipContainer c)
+		//Regular
+		public bool AddNormalContainer(ShipContainer c, int side)
 		{
-			for (int x = 0; x < Size.Width; x++)
+			for (int z = 0; z < Layers.Length - 1; z++)
 			{
-				for (int y = 0; y < Size.Height; y++)
+				for (int x = 0; x < Size.Width; x++)
 				{
-					for (int z = 0; z < Layers.Length; z++)
+					for (int y = 0; y < Size.Height; y++)
 					{
 						Point pnt = new Point(x, y);
-						int height = z;
-						if (CheckOccupation(pnt, height))
+
+						if (pnt.Y == side)
 						{
-							if (CheckNeighbors(pnt, height))
+							int height = z;
+							if (CheckOccupation(pnt, height))
 							{
-								AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Cooled, c.Valueable, pnt, height);
+								AssignedShipContainer cnt = new AssignedShipContainer(c.Weight, c.Type, pnt, height);
 								Layers[height].Containers.Add(cnt);
 								return true;
 							}
@@ -117,89 +123,50 @@ namespace Algorithm_ContainerMovement.Components
 			return false;
 		}
 
-		public bool AddContainer(ShipContainer container, Point point, int height)
+		public int CheckBalance()
 		{
-			if (CheckContainerFit(container, point, height))
+			LeftWeight = 0;
+			RightWeight = 0;
+
+			foreach (var layer in Layers)
 			{
-				AssignedShipContainer assignedContainer = new AssignedShipContainer(container.Weight, container.Cooled, container.Valueable, point, height);
-				Layers[height].Containers.Add(assignedContainer);
-				return true;
-			}
-			else
-			{
-				MessageBox.Show("Container could not be added");
-				return false;
+				foreach (var container in layer.Containers.Where(x => x.Location.Y == 0))
+					LeftWeight += container.Weight;
+
+				foreach (var container in layer.Containers.Where(x => x.Location.Y == 2))
+					RightWeight += container.Weight;
 			}
 
+			if (LeftWeight < RightWeight * 1.1)
+				return 0;
+
+			if (RightWeight < LeftWeight * 1.1)
+				return 2;
+
+			return 1;
 		}
 
-		public bool CheckBalance()
+		public float CheckCooledBalance()
 		{
-			foreach (var Layer in Layers)
+			foreach (var layer in Layers)
 			{
-				foreach (var container in Layer.Containers)
+				foreach (var container in layer.Containers.Where(x => x.Location.Y == 0))
 				{
-					if(container.Location.Y == 0)
-					{
-						container.Weight += LeftWeight;
-					}
-					else if(container.Location.Y == 2)
-					{
-						container.Weight += RightWeight;
-					}
+					LeftWeight += container.Weight;
 				}
 			}
 
-			if((LeftWeight - (LeftWeight * 0.2f)) > RightWeight || (RightWeight - (RightWeight * 0.2f)) > LeftWeight)
-				return false; 
-
-			return true;
-		}
-
-		public bool CheckContainerFit(ShipContainer container, Point point, int height)
-		{
-			if (CheckWeight(container))
-				return false;
-
-			if (height > 0)
-				if (!CheckContainersBelow(point, height))
-					return false;
-			foreach (var layer in Layers)
-				if (layer.Containers.Count == 0)
-					return true;
-
-			if (!CheckOccupation(point, height))
-				return false;
-			if (container.Valueable)
-				if (!CheckNeighbors(point, height))
-					return false;
-			if (container.Cooled)
-				if (!CheckRow(point))
-					return false;
-
-
-			return true;
-		}
-
-		private bool CheckContainersBelow(Point point, int height)
-		{
-			foreach (var container in Layers[height - 1].Containers)
-				if (container.Location == point)
-					return true;
-
-			return false;
+			return LeftWeight;
 		}
 
 		private bool CheckNeighbors(Point point, int height)
 		{
-			int percentage = 3;
+			int percentage = 1;
 			int neighbors = 0;
 
 			Point[] neighbours = new Point[]
 			{
 						new Point(0,-1),
-						new Point(-1, 0),
-						new Point(1, 0),
 						new Point(0, 1)
 			};
 
@@ -221,6 +188,9 @@ namespace Algorithm_ContainerMovement.Components
 
 		private bool CheckOccupation(Point point, int height)
 		{
+			if (Layers[height] == null)
+				return true;
+
 			foreach (var container in Layers[height].Containers)
 			{
 				if (container.Location == point)
@@ -229,35 +199,11 @@ namespace Algorithm_ContainerMovement.Components
 			return true;
 		}
 
-		private bool CheckRow(Point point)
-		{
-			if (point.Y == 0)
-				return true;
-			return false;
-		}
-
-		private bool CheckWeight(ShipContainer container)
-		{
-			return (container.Weight + Weight > MaxWeight);
-		}
-
-		private bool CheckWeightBalance()
+		public void SetWeight()
 		{
 			foreach (var layer in Layers)
 				foreach (var container in layer.Containers)
-					if (container.Location.Y == 0)
-						LeftWeight += container.Weight;
-					else if (container.Location.Y == 2)
-						RightWeight += container.Weight;
-
-			Balance = RightWeight - LeftWeight;
-
-			if (Balance > offset || (Balance * -1) > offset)
-			{
-				return false;
-			}
-
-			return true;
+					Weight += container.Weight;
 		}
 	}
 }

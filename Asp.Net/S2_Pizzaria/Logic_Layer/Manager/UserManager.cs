@@ -1,6 +1,5 @@
-﻿using Logic_Layer.Entities.Users;
-using Logic_Layer.Factory;
-using Logic_Layer.TemporaryData;
+﻿using Data_Layer.Users;
+using Data_Layer.TemporaryData;
 using System;
 using System.Collections.Generic;
 using System.Text;

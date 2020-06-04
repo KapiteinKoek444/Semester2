@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Algorithm_ContainerMovement.Components.Enums;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,14 +11,12 @@ namespace Algorithm_ContainerMovement.Components
 	public class ShipContainer
 	{
 		public float Weight { get; set; }
-		public bool Cooled { get; set; }
-		public bool Valueable { get; set; }
+		public Types.ContainerTypes Type { get; set; }
 
-		public ShipContainer(float weight, bool cooled, bool valueable)
+		public ShipContainer(float weight, Types.ContainerTypes type)
 		{
 			Weight = weight;
-			Cooled = cooled;
-			Valueable = valueable;
+			Type = type;
 		}
 	}
 }

@@ -5,18 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="DataBase\Dataset_Pizzaria.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Dataset_Pizzaria.xsd</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DataBase\Dataset_Pizzaria.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Dataset_Pizzaria.Designer.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\Database_Layer\Data_Layer.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,3 +8,13 @@ C:\Users\Pouki\source\repos\_S2\_Algorithms\Algorithm_ContainerMovement\Algorith
 C:\Users\Pouki\source\repos\_S2\_Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.csproj.CoreCompileInputs.cache
 C:\Users\Pouki\source\repos\_S2\_Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.exe
 C:\Users\Pouki\source\repos\_S2\_Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.pdb
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\bin\Debug\Algorithm_ContainerMovement.exe.config
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\bin\Debug\Algorithm_ContainerMovement.exe
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\bin\Debug\Algorithm_ContainerMovement.pdb
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.csprojAssemblyReference.cache
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.ContainerMovementForm.resources
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.Properties.Resources.resources
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.csproj.GenerateResource.cache
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.csproj.CoreCompileInputs.cache
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.exe
+C:\Users\Pouki\Documents\GitHub\Semester2\Algorithms\Algorithm_ContainerMovement\Algorithm_ContainerMovement\obj\Debug\Algorithm_ContainerMovement.pdb

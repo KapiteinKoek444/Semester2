@@ -8,11 +8,11 @@ namespace Algorithm_ContainerMovement.Components
 {
 	public class ContainerLayer
 	{
-		public readonly List<AssignedShipContainer> Containers = new List<AssignedShipContainer>();
+		public List<AssignedShipContainer> Containers;
 
 		public ContainerLayer()
 		{
-			
+			Containers = new List<AssignedShipContainer>();
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Algorithm_ContainerMovement.Components.Enums;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -6,18 +7,19 @@ using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Algorithm_ContainerMovement.Components
 {
 	public class Dock
 	{
-		public readonly List<ShipContainer> UnAssignedContainers = new List<ShipContainer>();
-		Ship Ship;
+		public List<ShipContainer> UnAssignedContainers = new List<ShipContainer>();
+		public Ship Ship;
 		public int TotalContainerWeight;
 
-		public void AddShip(Ship ship)
+		public Dock()
 		{
-			Ship = ship;
+			Ship = ComponentFactory.GenerateDefaultShip();
 		}
 
 		public void AddContainer(List<ShipContainer> containers)
@@ -26,45 +28,92 @@ namespace Algorithm_ContainerMovement.Components
 				UnAssignedContainers.Add(con);
 		}
 
-		public void AssignContainer(Point point, int height, Ship ship, ShipContainer container)
-		{
-			if (ship.AddContainer(container, point, height))
-				UnAssignedContainers.RemoveAll(con => con == container);
-		}
-
 		//Algorithm
 		public bool SolveContainers()
 		{
-			OrderContainers();
-			if (UnAssignedContainers.Sum(x => x.Weight) < Ship.MaxWeight)
-				return PlaceCooledContainers() && PlaceNormalContainers() && PlaceValueableContainers() && CheckBalance();
+			List<ShipContainer> CooledContainers = UnAssignedContainers.Where(x => x.Type == Types.ContainerTypes.Cooled).OrderByDescending(x => x.Weight).ToList();
+			List<ShipContainer> ValueableContainers = UnAssignedContainers.Where(x => x.Type == Types.ContainerTypes.Valueable).OrderByDescending(x => x.Weight).ToList();
+			List<ShipContainer> RegularContainers = UnAssignedContainers.Where(x => x.Type == Types.ContainerTypes.Regular).OrderByDescending(x => x.Weight).ToList();
+
+			int amount = 0;
+
+			for (int i = 0; i < CooledContainers.Count; i++)
+			{
+				Ship.AddCooledContainer(CooledContainers[i]);
+				amount += 1;
+			}
+
+			if (amount == CooledContainers.Count)
+				CooledContainers.Clear();
+
+
+			var leftWeight = Ship.CheckCooledBalance();
+
+			ValueableContainers = AddSides(ValueableContainers);
+
+			if (Ship.CheckBalance() == 1)
+			{
+				amount = 0;
+				for (int i = 0; i < RegularContainers.Count; i++)
+				{
+					if(Ship.AddNormalContainer(RegularContainers[i], 1))
+					{
+						amount++;
+					}
+				}
+				for (int i = 0; i < amount; i++)
+					RegularContainers.Remove(RegularContainers[i]);
+			}
 			else
-				return false;
+			{
+				RegularContainers = AddSides(RegularContainers);
+			}
+
+			if (CooledContainers.Count == 0 && ValueableContainers.Count == 0 && RegularContainers.Count == 0)
+			{
+				UnAssignedContainers.Clear();
+				Ship.SetWeight();
+				return true;
+			}
+
+			return false;
 		}
 
-		public void OrderContainers()
+		public List<ShipContainer> AddSides(List<ShipContainer> containers)
 		{
-			UnAssignedContainers.OrderByDescending(x => x.Weight);
-		}
+			int side = 2;
+			int amount = 0;
 
-		public bool PlaceCooledContainers()
-		{
-			return UnAssignedContainers.Where(x => x.Cooled == true).All(c => Ship.AddCooledContainer(c) != false);
-		}
+			for (int i = 0; i < containers.Count; i++)
+			{
+				if (Ship.AddValueableContainer(containers[i], side))
+				{
+					if (Ship.CheckBalance() == 0)
+						side = 0;
 
-		public bool PlaceNormalContainers()
-		{
-			return UnAssignedContainers.Where(x => x.Cooled == false && x.Valueable == false).All(c => Ship.AddNormalContainer(c) != false);
-		}
+					if (Ship.CheckBalance() == 2)
+						side = 2;
 
-		public bool PlaceValueableContainers()
-		{
-			return UnAssignedContainers.Where(x => x.Valueable == true).All(c => Ship.AddValueableContainer(c) != false);
-		}
+					amount++;
+				}
+				else
+				{
+					if (side == 2)
+						side = 0;
+					else if (side == 0)
+						side = 2;
 
-		public bool CheckBalance()
-		{
-			return Ship.CheckBalance();
+					if (!Ship.AddValueableContainer(containers[i], side))
+						break;
+
+					amount++;
+				}
+			}
+
+			if (amount == containers.Count)
+				containers.Clear();
+
+			return containers;
 		}
 	}
 }
