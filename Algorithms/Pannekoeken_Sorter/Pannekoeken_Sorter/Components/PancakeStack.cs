@@ -48,6 +48,7 @@ namespace Pannekoeken_Sorter.Components
 		{
 			int index = 0;
 
+
 			for (int i = 0; i < n; i++)
 			{
 				if (Pancakes[index].Width < Pancakes[i].Width)

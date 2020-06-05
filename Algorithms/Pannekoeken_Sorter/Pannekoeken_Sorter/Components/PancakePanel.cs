@@ -13,6 +13,12 @@ namespace Pannekoeken_Sorter.Components
 
 		public PancakePanel()
 		{
+
+		}
+
+		public void SetPanel(int i, PancakePanel pnl)
+		{
+			pancakePanel.Location = new Point((pnl.Pnl.Width - pancakePanel.Width) / 2, Convert.ToInt32((i * Height) - Height));
 		}
 	}
 }
