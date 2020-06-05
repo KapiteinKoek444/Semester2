@@ -32,6 +32,9 @@
 			this.console_Containers = new System.Windows.Forms.TextBox();
 			this.console_Ship = new System.Windows.Forms.TextBox();
 			this.CreateRandomContainers = new System.Windows.Forms.Button();
+			this.numUdAmount = new System.Windows.Forms.NumericUpDown();
+			this.lblAmount = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.numUdAmount)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// Solve
@@ -70,17 +73,51 @@
 			this.CreateRandomContainers.UseVisualStyleBackColor = true;
 			this.CreateRandomContainers.Click += new System.EventHandler(this.CreateRandomContainers_Click);
 			// 
+			// numUdAmount
+			// 
+			this.numUdAmount.Location = new System.Drawing.Point(13, 717);
+			this.numUdAmount.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			this.numUdAmount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.numUdAmount.Name = "numUdAmount";
+			this.numUdAmount.Size = new System.Drawing.Size(146, 22);
+			this.numUdAmount.TabIndex = 4;
+			this.numUdAmount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// lblAmount
+			// 
+			this.lblAmount.AutoSize = true;
+			this.lblAmount.Location = new System.Drawing.Point(12, 697);
+			this.lblAmount.Name = "lblAmount";
+			this.lblAmount.Size = new System.Drawing.Size(56, 17);
+			this.lblAmount.TabIndex = 5;
+			this.lblAmount.Text = "Amount";
+			// 
 			// ContainerMovementForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1405, 809);
+			this.Controls.Add(this.lblAmount);
+			this.Controls.Add(this.numUdAmount);
 			this.Controls.Add(this.CreateRandomContainers);
 			this.Controls.Add(this.console_Ship);
 			this.Controls.Add(this.console_Containers);
 			this.Controls.Add(this.Solve);
 			this.Name = "ContainerMovementForm";
 			this.Text = "ContainerMoveMent";
+			((System.ComponentModel.ISupportInitialize)(this.numUdAmount)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -92,6 +129,8 @@
 		private System.Windows.Forms.TextBox console_Containers;
 		private System.Windows.Forms.TextBox console_Ship;
 		private System.Windows.Forms.Button CreateRandomContainers;
+		private System.Windows.Forms.NumericUpDown numUdAmount;
+		private System.Windows.Forms.Label lblAmount;
 	}
 }
 

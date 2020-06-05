@@ -58,7 +58,6 @@
     <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
-    <Compile Include="Models\OrderRuleModel.cs" />
     <Compile Include="Models\PizzaModels\BottomModel.cs" />
     <Compile Include="Models\PizzaModels\IngredientModel.cs" />
     <Compile Include="Models\PizzaModels\PizzaModel.cs" />

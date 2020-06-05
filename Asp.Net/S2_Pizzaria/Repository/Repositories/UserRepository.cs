@@ -29,5 +29,21 @@ namespace Repository.Repositories
 			var user = database.Users.Where(x => x.UName == username && x.Password == password).SingleOrDefault();
 			return user;
 		}
+
+		public List<User> GetUsers()
+		{
+			return database.Users.ToList();
+		}
+
+		public User UpdateUser(User newUser)
+		{
+			var user = database.Users.Where(x => x.Id == newUser.Id).FirstOrDefault();
+			if(user != null)
+			{
+				user = newUser;
+				database.SaveChanges();
+			}
+			return user;
+		}
 	}
 }

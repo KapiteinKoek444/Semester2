@@ -22,7 +22,16 @@ namespace BusinessLogic.Factory
 
 		public static User ConvertUser(UserModel cusModel)
 		{
-			User customer = new User();
+			User customer = new User
+			{
+				Id = cusModel.Id,
+				UName = cusModel.UName,
+				Password = cusModel.Password,
+				Email = cusModel.Email,
+				ZipCode = cusModel.ZipCode,
+				HousNr = cusModel.HouseNr,
+				IsEmployee = cusModel.IsEmployee,
+			};
 			return customer;
 		}
 	}

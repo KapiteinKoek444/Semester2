@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Security;
 using BusinessLogic.Factory;
 using BusinessLogic.Manager;
 using BusinessLogic.Manager.User;
@@ -12,8 +13,6 @@ namespace S2_Pizzaria.Controllers
 {
 	public class AccountController : Controller
 	{
-		UserManager manager = new UserManager();
-
 		public ActionResult Login()
 		{
 			return View();
@@ -22,8 +21,13 @@ namespace S2_Pizzaria.Controllers
 		[HttpPost]
 		public ActionResult Login(LoginModel customer)
 		{
-			manager.GetUser(customer.Uname, customer.Password);
-			return View();
+			var user = UserManager.GetUser(customer.Uname, customer.Password);
+
+			if (user == null)
+				return View();
+
+			FormsAuthentication.SetAuthCookie(user.Id.ToString(), false);
+			return RedirectToAction("Index", "Home");
 		}
 
 		public ActionResult RegisterUser()
@@ -34,8 +38,12 @@ namespace S2_Pizzaria.Controllers
 		[HttpPost]
 		public ActionResult RegisterUser(UserModel UserModel)
 		{
-			manager.AddUser(UserModel);
-			return View();
-		}
+			var user = UserManager.AddUser(UserModel);
+			if (user == null)
+				return View();
+
+			FormsAuthentication.SetAuthCookie(user.Id.ToString(), false);
+			return RedirectToAction("Index", "Home");
+		}	
 	}
 }

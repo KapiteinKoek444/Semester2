@@ -12,3 +12,6 @@ C:\Users\Pouki\Documents\GitHub\Semester2\Asp.Net\S2_Pizzaria\Repository\obj\Deb
 C:\Users\Pouki\Documents\GitHub\Semester2\Asp.Net\S2_Pizzaria\Repository\obj\Debug\Repository.pdb
 C:\Users\Pouki\Documents\GitHub\Semester2\Asp.Net\S2_Pizzaria\Repository\obj\Debug\Repository.Migrations.FirstMigration.resources
 C:\Users\Pouki\Documents\GitHub\Semester2\Asp.Net\S2_Pizzaria\Repository\obj\Debug\Repository.csproj.GenerateResource.cache
+C:\Users\Pouki\Documents\GitHub\Semester2\Asp.Net\S2_Pizzaria\Repository\obj\Debug\Repository.Migrations.AddedDbSets.resources
+C:\Users\Pouki\Documents\GitHub\Semester2\Asp.Net\S2_Pizzaria\Repository\obj\Debug\Repository.Migrations.fix.resources
+C:\Users\Pouki\Documents\GitHub\Semester2\Asp.Net\S2_Pizzaria\Repository\obj\Debug\Repository.Migrations.fix02.resources

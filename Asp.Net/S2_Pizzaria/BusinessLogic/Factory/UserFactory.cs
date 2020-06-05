@@ -12,7 +12,6 @@ namespace BusinessLogic.Factory
 		public static List<UserModel> ConvertUser(List<User> users)
 		{
 			List<UserModel> userModels = new List<UserModel>();
-			PizzariaDB db = new PizzariaDB();
 
 			foreach (var user in users)
 			{
@@ -26,12 +25,13 @@ namespace BusinessLogic.Factory
 		{
 			UserModel customerMod = new UserModel
 			{
+				Id = user.Id,
 				UName = user.UName,
 				Password = user.Password,
 				Email = user.Email,
 				ZipCode = user.ZipCode,
 				HouseNr = user.HousNr,
-				
+				IsEmployee = user.IsEmployee
 			};
 
 			return customerMod;

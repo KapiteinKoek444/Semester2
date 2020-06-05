@@ -7,6 +7,8 @@ namespace Repository.Users
 {
 	public class User : EntityModelBase
 	{
+		public Guid OrderId { get; set; }
+
 		public string UName { get; set; }
 		public string Password { get; set; }
 		public string Email { get; set; }

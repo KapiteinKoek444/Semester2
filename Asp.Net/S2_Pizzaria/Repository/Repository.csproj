@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="DBCon\PizzariaDB.cs" />
     <Compile Include="Entities\Base\EntityModelBase.cs" />
+    <Compile Include="Entities\Connections\Order.cs" />
+    <Compile Include="Entities\Connections\OrderRule.cs" />
+    <Compile Include="Entities\Connections\Pizza_Ingredient.cs" />
     <Compile Include="Entities\Pizza_Components\BottomType\Bottom.cs" />
     <Compile Include="Entities\Pizza_Components\Ingredients.cs" />
     <Compile Include="Entities\Pizza_Components\Pizza.cs" />
@@ -62,11 +65,29 @@
     <Compile Include="Migrations\202006031136337_FirstMigration.designer.cs">
       <DependentUpon>202006031136337_FirstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006051123486_AddedDbSets.cs" />
+    <Compile Include="Migrations\202006051123486_AddedDbSets.designer.cs">
+      <DependentUpon>202006051123486_AddedDbSets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051128562_fix.cs" />
+    <Compile Include="Migrations\202006051128562_fix.designer.cs">
+      <DependentUpon>202006051128562_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051132266_fix02.cs" />
+    <Compile Include="Migrations\202006051132266_fix02.designer.cs">
+      <DependentUpon>202006051132266_fix02.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BottomRepository.cs" />
+    <Compile Include="Repositories\IngredientRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\PizzaRepository.cs" />
+    <Compile Include="Repositories\SauceRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="TemporaryData\TemporaryPizzaBuilder.cs" />
     <Compile Include="TemporaryData\TemporaryUserBuilder.cs" />
+    <Compile Include="UnitOfWork\UnitOfWorkRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -75,6 +96,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006031136337_FirstMigration.resx">
       <DependentUpon>202006031136337_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051123486_AddedDbSets.resx">
+      <DependentUpon>202006051123486_AddedDbSets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051128562_fix.resx">
+      <DependentUpon>202006051128562_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051132266_fix02.resx">
+      <DependentUpon>202006051132266_fix02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

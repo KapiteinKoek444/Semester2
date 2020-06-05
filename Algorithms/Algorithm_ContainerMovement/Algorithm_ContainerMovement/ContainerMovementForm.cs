@@ -34,7 +34,7 @@ namespace Algorithm_ContainerMovement
 
 		private void CreateRandomContainers_Click(object sender, EventArgs e)
 		{
-			dock.AddContainer(ComponentFactory.GenerateRandomContainers(10));
+			dock.AddContainer(ComponentFactory.GenerateRandomContainers(Convert.ToInt32(numUdAmount.Value)));
 			LogUnAssignedContainer();
 		}
 
@@ -50,11 +50,14 @@ namespace Algorithm_ContainerMovement
 			console_Ship.Text += dock.Ship.Weight.ToString();
 			console_Ship.Text += "\r\n";
 			console_Ship.Text += dock.Ship.MaxWeight.ToString();
+			console_Ship.Text += "\r\n";
 
 			foreach (var layer in dock.Ship.Layers)
 				foreach (var Container in layer.Containers)
 				{
-					
+					console_Ship.Text = Container.Location.X.ToString();
+					console_Ship.Text = " , ";
+					console_Ship.Text = Container.Location.Y.ToString();
 				}
 		}
 
