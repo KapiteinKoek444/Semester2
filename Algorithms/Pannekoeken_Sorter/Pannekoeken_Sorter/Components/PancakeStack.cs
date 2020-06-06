@@ -9,7 +9,6 @@ namespace Pannekoeken_Sorter.Components
 	public class PancakeStack
 	{
 		public List<Pancake> Pancakes = new List<Pancake>();
-		public PancakePanel pnl = new PancakePanel();
 
 		public PancakeStack()
 		{
@@ -36,11 +35,6 @@ namespace Pannekoeken_Sorter.Components
 				var startpoint = Pancakes[start];
 				Pancakes[start] = Pancakes[end];
 				Pancakes[end] = startpoint;
-			}
-
-			for (int i = 0; i < Pancakes.Count; i++)
-			{
-				Pancakes[i].SetPanel(i, pnl);
 			}
 		}
 

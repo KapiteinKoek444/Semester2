@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Components\Chameleon.cs" />
     <Compile Include="Components\CreateChameleons.cs" />
+    <Compile Include="Components\Enums\ChameleonTypes.cs" />
     <Compile Include="Kameleons.cs">
       <SubType>Form</SubType>
     </Compile>

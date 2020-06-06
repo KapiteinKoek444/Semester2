@@ -1,6 +1,7 @@
 ﻿using Kameleon_Opdracht.Components;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Kameleon_Opdracht
@@ -22,9 +23,6 @@ namespace Kameleon_Opdracht
 
 			chameleons = CreateChameleons.GenerateChameleons(red, blue, green);
 
-			foreach (var chameleon in chameleons)
-				pnlVisualisation.Controls.Add(chameleon.Body);
-
 			tmrMain.Enabled = true;
 		}
 
@@ -38,12 +36,14 @@ namespace Kameleon_Opdracht
 
 		private void TmrMain_Tick(object sender, EventArgs e)
 		{
+			pnlVisualisation.Controls.Clear();
 			tboxCoordinates.Text = "";
 			
 			for (int i = 0; i < chameleons.Count; i++)
 			{
 				chameleons[i].MoveLocation();
 				chameleons[i].CheckBorders(pnlVisualisation);
+				VisualizeChameleons(chameleons[i]);
 
 				for (int j = 0; j < chameleons.Count; j++)
 				{
@@ -51,10 +51,29 @@ namespace Kameleon_Opdracht
 				}
 
 				tboxCoordinates.Text += $"Chameleon{i}:" + "\r\n";
-				tboxCoordinates.Text += $"   {chameleons[i].Body.Location.X}, {chameleons[i].Body.Location.Y}" + "\r\n";
-				tboxCoordinates.Text += $"   {chameleons[i].Body.BackColor}" + "\r\n";
+				tboxCoordinates.Text += chameleons[i].Location.X.ToString();
+				tboxCoordinates.Text += " , ";
+				tboxCoordinates.Text += chameleons[i].Location.Y.ToString();
+				tboxCoordinates.Text += "\r\n";
+				tboxCoordinates.Text += chameleons[i].Color.ToString();
+				tboxCoordinates.Text += "\r\n";
 			}
 
+		}
+
+		private void VisualizeChameleons(Chameleon ch)
+		{
+			Panel pnl = new Panel();
+			pnl.Size = ch.Size;
+			pnl.Location = ch.Location;
+			if (ch.Color == Components.Enums.ChameleonTypes.Colors.Red)
+				pnl.BackColor = Color.Red;
+			else if (ch.Color == Components.Enums.ChameleonTypes.Colors.Blue)
+				pnl.BackColor = Color.Blue;
+			else
+				pnl.BackColor = Color.Green;
+
+			pnlVisualisation.Controls.Add(pnl);
 		}
 	}
 }

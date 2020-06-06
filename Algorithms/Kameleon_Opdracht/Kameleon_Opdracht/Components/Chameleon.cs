@@ -1,60 +1,65 @@
-﻿using System.Drawing;
+﻿using Kameleon_Opdracht.Components.Enums;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Kameleon_Opdracht.Components
 {
 	public class Chameleon
 	{
-		public Panel Body { get; set; }
+		public Size Size { get; set; }
+		public ChameleonTypes.Colors Color { get; set; }
+		public Point Location { get; set; }
 		public Point Speed { get; set; }
 
-		public Chameleon(Panel body, Point speed)
+		public Chameleon(Size size, ChameleonTypes.Colors color, Point location, Point speed)
 		{
-			Body = body;
+			Size = size;
+			Color = color;
+			Location = location;
 			Speed = speed;
 		}
 
 		public void MoveLocation()
 		{
-			Body.Location = new Point(Body.Location.X + Speed.X, Body.Location.Y + Speed.Y);
+			Location = new Point(Location.X + Speed.X, Location.Y + Speed.Y);
 		}
 
 		public void CheckBorders(Panel Island)
 		{
-			if (Body.Location.X + Body.Width >= Island.Width || Body.Location.X <= 0)
+			if (Location.X + Size.Width >= Island.Width || Location.X <= 0)
 				Speed = new Point(Speed.X * -1, Speed.Y);
 			
-			if (Body.Location.Y + Body.Height >= Island.Height || Body.Location.Y <= 0)
+			if (Location.Y + Size.Height >= Island.Height || Location.Y <= 0)
 				Speed = new Point(Speed.X, Speed.Y * -1);
 		}
 
 		public void ColorCheck(Chameleon partner)
 		{
-			for (int xC = 0; xC < Body.Width; xC++)
+			for (int xC = 0; xC < Size.Width; xC++)
 			{
-				int ChameleonWidth = xC + Body.Location.X;
-				if (ChameleonWidth > partner.Body.Location.X
-					&& ChameleonWidth < partner.Body.Location.X + partner.Body.Size.Width
-					&& Body.Location.Y < partner.Body.Location.Y + partner.Body.Size.Height
-					&& Body.Location.Y + Body.Size.Height > partner.Body.Location.Y)
+				int ChameleonWidth = xC + Location.X;
+				if (ChameleonWidth > partner.Location.X
+					&& ChameleonWidth < partner.Location.X + partner.Size.Width
+					&& Location.Y < partner.Location.Y + partner.Size.Height
+					&& Location.Y + Size.Height > partner.Location.Y)
 				{
-					if(Body.BackColor == Color.Red && partner.Body.BackColor == Color.Blue 
-						|| Body.BackColor == Color.Blue && partner.Body.BackColor == Color.Red)
+					if(Color == ChameleonTypes.Colors.Red && partner.Color == ChameleonTypes.Colors.Blue
+						|| Color == ChameleonTypes.Colors.Blue && partner.Color == ChameleonTypes.Colors.Red)
 					{
-						Body.BackColor = Color.Green;
-						partner.Body.BackColor = Color.Green;
+						Color = ChameleonTypes.Colors.Green;
+						partner.Color = ChameleonTypes.Colors.Green;
 					}
-					else if(Body.BackColor == Color.Green && partner.Body.BackColor == Color.Blue
-						|| Body.BackColor == Color.Blue && partner.Body.BackColor == Color.Green)
+					else if(Color == ChameleonTypes.Colors.Green && partner.Color == ChameleonTypes.Colors.Blue
+						|| Color == ChameleonTypes.Colors.Blue && partner.Color == ChameleonTypes.Colors.Green)
 					{
-						Body.BackColor = Color.Red;
-						partner.Body.BackColor = Color.Red;
+						Color = ChameleonTypes.Colors.Red;
+						partner.Color = ChameleonTypes.Colors.Red;
 					}
-					else if(Body.BackColor == Color.Red && partner.Body.BackColor == Color.Green
-						|| Body.BackColor == Color.Green && partner.Body.BackColor == Color.Red)
+					else if(Color == ChameleonTypes.Colors.Red && partner.Color == ChameleonTypes.Colors.Green
+						|| Color == ChameleonTypes.Colors.Green && partner.Color == ChameleonTypes.Colors.Red)
 					{
-						Body.BackColor = Color.Blue;
-						partner.Body.BackColor = Color.Blue;
+						Color = ChameleonTypes.Colors.Blue;
+						partner.Color = ChameleonTypes.Colors.Blue;
 					}
 
 					Speed = new Point(Speed.X * -1, Speed.Y * -1);

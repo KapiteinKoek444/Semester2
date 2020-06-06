@@ -14,12 +14,10 @@ namespace Pannekoeken_Sorter
 	public partial class Pancakes : Form
 	{
 		PancakeStack stack;
-		PancakePanel pnl = new PancakePanel();
 
 		public Pancakes()
 		{
 			InitializeComponent();
-			pnl.Pnl = pnlPancakes;
 		}
 
 		private void SolveButton_Click(object sender, EventArgs e)
@@ -30,16 +28,22 @@ namespace Pannekoeken_Sorter
 
 		private void Set_Pancakes_Click(object sender, EventArgs e)
 		{
-			stack = StackFactory.GenerateStack(Convert.ToInt32(numUDCount.Value), pnl);
+			stack = StackFactory.GenerateStack(Convert.ToInt32(numUDCount.Value),pnlPancakes.Height,pnlPancakes.Width);
 			Visualise(stack.Pancakes);
 		}
 
 		private void Visualise(List<Pancake> pancakes)
 		{
-			pnl.Pnl.Controls.Clear();
-			foreach (var pan in pancakes)
+			pnlPancakes.Controls.Clear();
+			for (int i = 0; i < pancakes.Count; i++)
 			{
-				pnl.Pnl.Controls.Add(pan.pancakePanel);
+				Panel pnl = new Panel();
+				pnl.Width = Convert.ToInt32(pancakes[i].Width);
+				pnl.Height = Convert.ToInt32(pancakes[i].Height);
+				pnl.Location = new Point((pnlPancakes.Width - pnl.Width) / 2, Convert.ToInt32((i * pancakes[i].Height) - pancakes[i].Height));
+				pnl.BackColor = Color.Transparent;
+				pnl.BorderStyle = BorderStyle.FixedSingle;
+				pnlPancakes.Controls.Add(pnl);
 			}
 		}
 	}

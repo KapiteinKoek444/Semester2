@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Pancake.cs" />
-    <Compile Include="Components\PancakePanel.cs" />
     <Compile Include="Components\PancakeStack.cs" />
     <Compile Include="Components\StackFactory.cs" />
     <Compile Include="Pancakes.cs">
