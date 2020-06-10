@@ -3,38 +3,36 @@ using BusinessLogic.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Repository.DBCon;
 
 namespace BusinessLogic.Factory
 {
-	public static class UserFactory
+	public static class UserModelFactory
 	{
-		public static List<UserModel> ConvertUser(List<User> users)
+		public static List<User> ConvertUser(List<UserModel> userModels)
 		{
-			List<UserModel> userModels = new List<UserModel>();
+			List<User> users = new List<User>();
 
-			foreach (var user in users)
+			foreach (var userModel in userModels)
 			{
-				var userMod = ConvertUser(user);
-				userModels.Add(userMod);
+				var userMod = ConvertUser(userModel);
+				users.Add(userMod);
 			}
-			return userModels;
+			return users;
 		}
 
-		public static UserModel ConvertUser(User user)
+		public static User ConvertUser(UserModel cusModel)
 		{
-			UserModel customerMod = new UserModel
+			User customer = new User
 			{
-				Id = user.Id,
-				UName = user.UName,
-				Password = user.Password,
-				Email = user.Email,
-				ZipCode = user.ZipCode,
-				HouseNr = user.HousNr,
-				IsEmployee = user.IsEmployee
+				Id = cusModel.Id,
+				UName = cusModel.UName,
+				Password = cusModel.Password,
+				Email = cusModel.Email,
+				ZipCode = cusModel.ZipCode,
+				HousNr = cusModel.HouseNr,
+				IsEmployee = cusModel.IsEmployee,
 			};
-
-			return customerMod;
+			return customer;
 		}
 	}
 }

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace BusinessLogic.Factory
 {
-	public static class PizzaConverter
+	public static class PizzaModelFac
 	{
+
 	}
 }
