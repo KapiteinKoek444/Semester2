@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BusinessLogic.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BusinessLogic.Models.IngredientComponents
 {
-	public class PizzaModel
+	public class PizzaModel : EntityModelBase
 	{
 		public string Name { get; set; }
 		public double Price { get; set; }

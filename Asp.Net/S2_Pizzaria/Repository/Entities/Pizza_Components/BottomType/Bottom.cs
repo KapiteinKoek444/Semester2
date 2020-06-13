@@ -12,7 +12,6 @@ namespace Repository.Entities.Pizza_Components.BottomType
 	public class Bottom : EntityModelBase
 	{
 		public Guid SauceId { get; set; }
-		public Guid PizzaId { get; set; }
 
 		public double Surface { get; set; }
 		public string Name { get; set; }

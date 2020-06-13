@@ -40,7 +40,7 @@ namespace Pannekoeken_Sorter
 				Panel pnl = new Panel();
 				pnl.Width = Convert.ToInt32(pancakes[i].Width);
 				pnl.Height = Convert.ToInt32(pancakes[i].Height);
-				pnl.Location = new Point((pnlPancakes.Width - pnl.Width) / 2, Convert.ToInt32((i * pancakes[i].Height) - pancakes[i].Height));
+				pnl.Location = new Point((pnlPancakes.Width - pnl.Width) / 2, i * pnl.Height);
 				pnl.BackColor = Color.Transparent;
 				pnl.BorderStyle = BorderStyle.FixedSingle;
 				pnlPancakes.Controls.Add(pnl);

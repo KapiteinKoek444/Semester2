@@ -16,7 +16,7 @@ namespace BusinessLogic.Manager.User
 		public static UserModel AddUser(UserModel model)
 		{
 			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
-			var user = UserModelFactory.ConvertUser(model);
+			var user = UserFactory.ConvertUser(model);
 			user.Id = Guid.NewGuid();
 			unitOfWork.UserRepository.AddUser(user);
 			return model;
@@ -26,7 +26,7 @@ namespace BusinessLogic.Manager.User
 		{
 			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
 			var user = unitOfWork.UserRepository.GetUser(username, password);
-			var model = UserFactory.ConvertUser(user);
+			var model = UserModelFactory.ConvertUser(user);
 			return model;
 		}
 	}

@@ -16,7 +16,7 @@ namespace Repository.Entities.Pizza_Components
 		public Guid BottomId { get; set; }
 
 		public OrderRule OrderRule { get; set; }
-		public Pizza_Ingredient PizzaIngredient { get; set; }
+		public List<Pizza_Ingredient> PizzaIngredient { get; set; }
 		
 		public string Name { get; set; }
 		public double Price { get; set; }

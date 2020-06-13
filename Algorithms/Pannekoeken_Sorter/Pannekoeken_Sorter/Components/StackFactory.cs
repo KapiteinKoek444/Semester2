@@ -15,12 +15,12 @@ namespace Pannekoeken_Sorter.Components
 			PancakeStack stack = new PancakeStack();
 			Random rnd = new Random();
 
-			decimal height = (_height / amount);
+			int height = (_height / amount);
 
 			for (int i = 0; i < amount; i++)
 			{
 
-					decimal w = rnd.Next(0, width);
+					int w = rnd.Next(0, width);
 					Pancake pancake = new Pancake(w, height);
 					stack.Pancakes.Add(pancake);
 			}

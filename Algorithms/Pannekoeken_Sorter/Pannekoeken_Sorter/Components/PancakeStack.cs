@@ -17,7 +17,7 @@ namespace Pannekoeken_Sorter.Components
 
 		public void AutoSort()
 		{
-			for (int arraylength = Pancakes.Count - 1; arraylength >= 0; arraylength--)
+			for (int arraylength = Pancakes.Count - 1; arraylength > 0; arraylength--)
 			{
 				int indexOfMax = IndexOfBiggest(arraylength);
 				if (indexOfMax != arraylength)
@@ -43,7 +43,7 @@ namespace Pannekoeken_Sorter.Components
 			int index = 0;
 
 
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i <= n; i++)
 			{
 				if (Pancakes[index].Width < Pancakes[i].Width)
 				{

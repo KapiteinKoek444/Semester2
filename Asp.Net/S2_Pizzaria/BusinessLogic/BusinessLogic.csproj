@@ -51,10 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factory\PizzaConverter.cs" />
-    <Compile Include="Factory\UserFactory.cs" />
-    <Compile Include="Factory\UserModelFactory.cs" />
+    <Compile Include="Factory\ItemFactories\BottomFactory.cs" />
+    <Compile Include="Factory\ItemFactories\IngredientFactory.cs" />
+    <Compile Include="Factory\ItemFactories\SauceFactory.cs" />
+    <Compile Include="Factory\ModelFactories\BottomModelFacotry.cs" />
+    <Compile Include="Factory\ModelFactories\IngredientModelFactory.cs" />
+    <Compile Include="Factory\ItemFactories\PizzaFactory.cs" />
+    <Compile Include="Factory\ModelFactories\PizzaModelFactory.cs" />
+    <Compile Include="Factory\ModelFactories\SauceModelFactory.cs" />
+    <Compile Include="Factory\ModelFactories\UserModelFactory.cs" />
+    <Compile Include="Factory\ItemFactories\UserFactory.cs" />
+    <Compile Include="Manager\User\OrderManager.cs" />
     <Compile Include="Manager\User\UserManager.cs" />
+    <Compile Include="Models\Base\EntityModelBase.cs" />
     <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
@@ -74,6 +83,10 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Manager\PizzaComponents\" />
+    <Folder Include="Manager\Pizza\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,18 +1,15 @@
-﻿using System;
+﻿using BusinessLogic.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BusinessLogic.Models.IngredientComponents
 {
-	public class SauceModel : IngredientModel
+	public class SauceModel : EntityModelBase
 	{
-		public enum SauceType
-		{
-			Pesto,
-			Tomato,
-			special
-		}
-
-		public Enum Type { get; set; }
+		public BottomModel bottom { get; set; }
+		public string Name { get; set; }
+		public bool IsSpicy { get; set; }
+		public double Price { get; set; }
 	}
 }

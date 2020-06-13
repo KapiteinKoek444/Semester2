@@ -11,10 +11,10 @@ namespace Pannekoeken_Sorter
 {
 	public class Pancake
 	{
-		public decimal Width { get; set; }
-		public decimal Height { get; set; }
+		public int Width { get; set; }
+		public int Height { get; set; }
 
-		public Pancake(decimal width, decimal height)
+		public Pancake(int width, int height)
 		{
 			Width = width;
 			Height = height;

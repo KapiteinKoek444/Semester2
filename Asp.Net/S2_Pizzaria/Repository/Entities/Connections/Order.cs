@@ -9,7 +9,7 @@ namespace Repository.Entities.Connections
 {
 	public class Order : EntityModelBase
 	{
-		public Guid OrderRuleId { get; set; }
 		public Guid UserId { get; set; }
+		public List<OrderRule> OrderRule { get; set; }
 	}
 }

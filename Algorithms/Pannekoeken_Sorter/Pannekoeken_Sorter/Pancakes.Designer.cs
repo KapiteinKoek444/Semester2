@@ -63,12 +63,12 @@
 			this.pnlPancakes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnlPancakes.Location = new System.Drawing.Point(354, 12);
 			this.pnlPancakes.Name = "pnlPancakes";
-			this.pnlPancakes.Size = new System.Drawing.Size(635, 614);
+			this.pnlPancakes.Size = new System.Drawing.Size(600, 600);
 			this.pnlPancakes.TabIndex = 1;
 			// 
 			// SolveButton
 			// 
-			this.SolveButton.Location = new System.Drawing.Point(12, 561);
+			this.SolveButton.Location = new System.Drawing.Point(12, 547);
 			this.SolveButton.Name = "SolveButton";
 			this.SolveButton.Size = new System.Drawing.Size(336, 65);
 			this.SolveButton.TabIndex = 2;
@@ -78,7 +78,7 @@
 			// 
 			// btnSetPancakes
 			// 
-			this.btnSetPancakes.Location = new System.Drawing.Point(12, 523);
+			this.btnSetPancakes.Location = new System.Drawing.Point(12, 487);
 			this.btnSetPancakes.Name = "btnSetPancakes";
 			this.btnSetPancakes.Size = new System.Drawing.Size(336, 32);
 			this.btnSetPancakes.TabIndex = 3;
@@ -90,7 +90,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1001, 638);
+			this.ClientSize = new System.Drawing.Size(966, 621);
 			this.Controls.Add(this.btnSetPancakes);
 			this.Controls.Add(this.SolveButton);
 			this.Controls.Add(this.pnlPancakes);
