@@ -16,7 +16,7 @@ namespace Repository.Entities.Pizza_Components
 		public Guid BottomId { get; set; }
 		public Guid OrderRuleId { get; set; }
 
-		[ForeignKey("PizzaId")]
+		[ForeignKey("PizzaIngredient_Id")]
 		public virtual List<Pizza_Ingredient> PizzaIngredient { get; set; }
 
 		public string Name { get; set; }

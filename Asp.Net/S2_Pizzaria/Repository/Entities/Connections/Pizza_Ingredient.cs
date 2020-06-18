@@ -10,7 +10,7 @@ namespace Repository.Entities.Connections
 {
 	public class Pizza_Ingredient : EntityModelBase
 	{
-		public Guid PizzaId { get; set; }
+		public Guid PizzaIngredient_Id { get; set; }
 		public Guid IngriedientId { get; set; }
 	}
 }

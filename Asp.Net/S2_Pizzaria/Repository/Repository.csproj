@@ -61,21 +61,9 @@
     <Compile Include="Entities\Pizza_Components\Pizza.cs" />
     <Compile Include="Entities\Pizza_Components\Sauce.cs" />
     <Compile Include="Entities\Users\User.cs" />
-    <Compile Include="Migrations\202006031136337_FirstMigration.cs" />
-    <Compile Include="Migrations\202006031136337_FirstMigration.designer.cs">
-      <DependentUpon>202006031136337_FirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006051123486_AddedDbSets.cs" />
-    <Compile Include="Migrations\202006051123486_AddedDbSets.designer.cs">
-      <DependentUpon>202006051123486_AddedDbSets.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006051128562_fix.cs" />
-    <Compile Include="Migrations\202006051128562_fix.designer.cs">
-      <DependentUpon>202006051128562_fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006051132266_fix02.cs" />
-    <Compile Include="Migrations\202006051132266_fix02.designer.cs">
-      <DependentUpon>202006051132266_fix02.cs</DependentUpon>
+    <Compile Include="Migrations\202006180824260_UpdateDatabase.cs" />
+    <Compile Include="Migrations\202006180824260_UpdateDatabase.designer.cs">
+      <DependentUpon>202006180824260_UpdateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,17 +84,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006031136337_FirstMigration.resx">
-      <DependentUpon>202006031136337_FirstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006051123486_AddedDbSets.resx">
-      <DependentUpon>202006051123486_AddedDbSets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006051128562_fix.resx">
-      <DependentUpon>202006051128562_fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006051132266_fix02.resx">
-      <DependentUpon>202006051132266_fix02.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006180824260_UpdateDatabase.resx">
+      <DependentUpon>202006180824260_UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

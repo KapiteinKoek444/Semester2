@@ -27,7 +27,7 @@ namespace BusinessLogic.Factory.ItemFactories
 			Pizza_Ingredient pizINg = new Pizza_Ingredient()
 			{
 				Id = model.Id,
-				PizzaId = model.PizzaId,
+				PizzaIngredient_Id = model.PizzaId,
 				IngriedientId = model.Ingredient.Id
 			};
 

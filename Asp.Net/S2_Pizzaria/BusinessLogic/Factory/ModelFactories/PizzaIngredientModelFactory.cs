@@ -31,7 +31,7 @@ namespace BusinessLogic.Factory.ModelFactories
 			PizzaIngredientModel model = new PizzaIngredientModel
 			{
 				Id = pizIng.Id,
-				PizzaId = pizIng.PizzaId,
+				PizzaId = pizIng.PizzaIngredient_Id,
 				Ingredient = ingredient
 			};
 

@@ -70,9 +70,7 @@
     <Compile Include="Factory\ModelFactories\SauceModelFactory.cs" />
     <Compile Include="Factory\ModelFactories\UserModelFactory.cs" />
     <Compile Include="Factory\ItemFactories\UserFactory.cs" />
-    <Compile Include="Manager\PizzaComponents\BottomManager.cs" />
     <Compile Include="Manager\PizzaComponents\IngredientManager.cs" />
-    <Compile Include="Manager\PizzaComponents\SauceManager.cs" />
     <Compile Include="Manager\Pizza\PizzaManager.cs" />
     <Compile Include="Manager\User\OrderManager.cs" />
     <Compile Include="Manager\User\UserManager.cs" />
