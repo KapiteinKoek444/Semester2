@@ -82,7 +82,9 @@
     <Compile Include="Repositories\BottomRepository.cs" />
     <Compile Include="Repositories\IngredientRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\OrderRuleRepository.cs" />
     <Compile Include="Repositories\PizzaRepository.cs" />
+    <Compile Include="Repositories\Pizza_IngredientRepository.cs" />
     <Compile Include="Repositories\SauceRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="TemporaryData\TemporaryPizzaBuilder.cs" />

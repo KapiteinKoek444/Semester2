@@ -1,13 +1,9 @@
 ﻿using ContainerMovement_V2.Factories;
 using ContainerMovement_V2.Objects;
 using ContainerMovement_V2.Objects.Enums;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContainerMovement_V2.Logic
 {
@@ -21,6 +17,11 @@ namespace ContainerMovement_V2.Logic
 			Ship = ShipFactory.GenerateDefaultShip();
 		}
 
+		public void AssignShip(Size size, int weight)
+		{
+			Ship = ShipFactory.GenerateCustomShip(weight, size);
+		}
+
 		public void AddContainer(List<ShipContainer> containers)
 		{
 			foreach (var con in containers)
@@ -32,27 +33,36 @@ namespace ContainerMovement_V2.Logic
 			if (unassignedContainers.Sum(x => x.Weight) < Ship.Weight / 2)
 				return false;
 
-			List<ShipContainer> CooledContainers = unassignedContainers.Where(x => x.Type == Types.ContainerTypes.Cooled).OrderByDescending(x => x.Weight).ToList();
-			List<ShipContainer> ValueableContainers = unassignedContainers.Where(x => x.Type == Types.ContainerTypes.Valueable).OrderByDescending(x => x.Weight).ToList();
-			List<ShipContainer> RegularContainers = unassignedContainers.Where(x => x.Type == Types.ContainerTypes.Regular).OrderByDescending(x => x.Weight).ToList();
+			List<ShipContainer> CooledContainers = unassignedContainers
+				.Where(x => x.Type == Types.ContainerTypes.Cooled)
+				.OrderByDescending(x => x.Weight).ToList();
+			List<ShipContainer> ValueableContainers = unassignedContainers
+				.Where(x => x.Type == Types.ContainerTypes.Valueable)
+				.OrderByDescending(x => x.Weight).ToList();
+			List<ShipContainer> RegularContainers = unassignedContainers
+				.Where(x => x.Type == Types.ContainerTypes.Regular)
+				.OrderByDescending(x => x.Weight).ToList();
 
-			if (AddCooledContainers(CooledContainers))
-				CooledContainers.Clear();
-			else
-				return false;
+			if (CooledContainers != null)
+				if (AddCooledContainers(CooledContainers))
+					CooledContainers.Clear();
+				else
+					return false;
 
-			if (AddValueableContainers(ValueableContainers))
-				ValueableContainers.Clear();
-			else
-				return false;
+			if (RegularContainers != null)
+				if (AddRegularContainers(RegularContainers))
+					RegularContainers.Clear();
+				else
+					return false;
 
-			if (AddRegularContainers(RegularContainers))
-				RegularContainers.Clear();
-			else
-				return false;
+			if (ValueableContainers != null)
+				if (AddValueableContainers(ValueableContainers))
+					ValueableContainers.Clear();
+				else
+					return false;
 
-			if (Ship.CheckBalance() == Types.Sides.Middle)
-				return true;
+				if (Ship.CheckBalance(true) == Types.Sides.End)
+					return true;
 
 			return false;
 		}
@@ -60,8 +70,8 @@ namespace ContainerMovement_V2.Logic
 		//Add Cooled
 		public bool AddCooledContainers(List<ShipContainer> Cooled)
 		{
-			foreach (var con in Cooled)
-				if (!Ship.AddCooledContainer(con))
+			foreach (var c in Cooled)
+				if (!CheckSides(c))
 					return false;
 
 			return true;
@@ -90,24 +100,16 @@ namespace ContainerMovement_V2.Logic
 		public bool CheckSides(ShipContainer c)
 		{
 			if (c.Type == Types.ContainerTypes.Regular)
-			{
-				if (Ship.AddRegularContainer(c, Ship.CheckBalance()))
+				if (Ship.AddRegularContainer(c, Ship.CheckBalance(false)))
 					return true;
-			}
+
+			if (c.Type == Types.ContainerTypes.Cooled)
+				if (Ship.AddCooledContainer(c, Ship.CheckBalance(false)))
+					return true;
 
 			if (c.Type == Types.ContainerTypes.Valueable)
-			{
-				var side = Ship.CheckBalance();
-				if (side == Types.Sides.Middle)
-					if (Ship.AddValueableContainer(c, Types.Sides.Left))
-						return true;
-					else
-						if (Ship.AddValueableContainer(c, side))
-						return true;
-
-				if (Ship.AddValueableContainer(c, side))
+				if (Ship.AddValueableContainer(c, Ship.CheckBalance(false)))
 					return true;
-			}
 
 			return false;
 		}

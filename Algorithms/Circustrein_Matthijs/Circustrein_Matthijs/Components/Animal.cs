@@ -7,10 +7,10 @@ namespace CircusTrein_Opdracht.Components
 {
 	public class Animal
 	{
-		public foodType Food { get; set; }
+		public FoodType Food { get; set; }
 		public int Size { get; set; }
 
-		public Animal(foodType food, int size)
+		public Animal(FoodType food, int size)
 		{
 			Food = food;
 			Size = size;

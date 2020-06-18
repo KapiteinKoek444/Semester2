@@ -15,8 +15,8 @@ namespace Circustrein_UnitTest
 			int expectedAmount = 2;
 			List<Animal> animalList = new List<Animal>();
 
-			Animal animal2 = new Animal(FoodEnum.foodType.Herbivore, 5);
-			Animal animal1 = new Animal(FoodEnum.foodType.Carnivore, 3);
+			Animal animal2 = new Animal(FoodEnum.FoodType.Herbivore, 5);
+			Animal animal1 = new Animal(FoodEnum.FoodType.Carnivore, 3);
 
 			animalList.Add(animal1);
 			animalList.Add(animal2);
@@ -36,7 +36,7 @@ namespace Circustrein_UnitTest
 		{
 			//Arrange
 			int expectedCarryWeight = 5;
-			Animal animal = new Animal(FoodEnum.foodType.Carnivore, 5);
+			Animal animal = new Animal(FoodEnum.FoodType.Carnivore, 5);
 
 			Wagon wagon = new Wagon();
 			wagon.AddAnimal(animal);
@@ -55,8 +55,8 @@ namespace Circustrein_UnitTest
 			bool expectedOutcome = false;
 			Wagon wagon = new Wagon();
 
-			Animal carnivore = new Animal(FoodEnum.foodType.Carnivore, 5);
-			Animal herbivore = new Animal(FoodEnum.foodType.Herbivore, 3);
+			Animal carnivore = new Animal(FoodEnum.FoodType.Carnivore, 5);
+			Animal herbivore = new Animal(FoodEnum.FoodType.Herbivore, 3);
 
 			wagon.AddAnimal(carnivore);
 			//Act

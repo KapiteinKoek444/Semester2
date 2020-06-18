@@ -1,5 +1,6 @@
 ﻿using Repository.DBCon;
 using Repository.Entities.Connections;
+using Repository.Users;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -23,11 +24,21 @@ namespace Repository.Repositories
 			return database.Order.Where(x => x.Id == order.Id).FirstOrDefault();
 		}
 
+		public Order GetOrderId(Guid Id)
+		{
+			return database.Order.Where(x => x.Id == Id).FirstOrDefault();
+		}
+
+		public List<Order> GetAllOrders()
+		{
+			return database.Order.ToList();
+		}
+
 		public Order UpdateOrder(Order paidOrder)
 		{
 			Order order = database.Order.Where(x => x.Id == paidOrder.Id).FirstOrDefault();
 
-			if(order != null)
+			if (order != null)
 			{
 				order = paidOrder;
 				database.Order.AddOrUpdate(order);
@@ -35,6 +46,25 @@ namespace Repository.Repositories
 			}
 
 			return paidOrder;
+		}
+
+		public Order AddOrder(Order order)
+		{
+			database.Order.Add(order);
+			return order;
+		}
+
+		public void AddOrUpdate(Order newOrder)
+		{
+			var order = database.Order.Where(x => x.Id == newOrder.Id).FirstOrDefault();
+			if (order != null)
+			{
+				order = newOrder;
+				database.Order.AddOrUpdate(order);
+				database.SaveChanges();
+			}
+			else
+				AddOrder(newOrder);
 		}
 	}
 }

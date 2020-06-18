@@ -2,6 +2,7 @@
 using Repository.Entities.Pizza_Components.BottomType;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Dynamic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -40,6 +41,19 @@ namespace Repository.Repositories
 		{
 			database.Bottom.Remove(bottom);
 			return bottom;
+		}
+
+		public void AddOrUpdate(Bottom newBottom)
+		{
+			var bottom = database.Bottom.Where(x => x.Id == newBottom.Id).FirstOrDefault();
+			if (bottom != null)
+			{
+				bottom = newBottom;
+				database.Bottom.AddOrUpdate(bottom);
+				database.SaveChanges();
+			}
+			else
+				AddBottom(newBottom);
 		}
 	}
 }

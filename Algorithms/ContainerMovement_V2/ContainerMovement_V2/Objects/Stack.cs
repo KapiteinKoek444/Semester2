@@ -10,6 +10,7 @@ namespace ContainerMovement_V2.Objects
 	public class Stack
 	{
 		public readonly List<ShipContainer> containers = new List<ShipContainer>();
+		public int height = 0;
 		
 		public Point Location { get; set; }
 
@@ -38,6 +39,7 @@ namespace ContainerMovement_V2.Objects
 				return false;
 
 			containers.Add(container);
+			height++;
 			return true;
 		}
 	}

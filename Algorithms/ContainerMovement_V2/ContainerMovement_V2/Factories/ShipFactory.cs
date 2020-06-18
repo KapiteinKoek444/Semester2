@@ -10,9 +10,9 @@ namespace ContainerMovement_V2.Factories
 {
 	public static class ShipFactory
 	{
-		public static Ship GenerateCustomShip(int maxWeight)
+		public static Ship GenerateCustomShip(int maxWeight, Size size)
 		{
-			return new Ship(new Size(4, 3), maxWeight * 1000);
+			return new Ship(size, maxWeight * 1000);
 		}
 
 		public static Ship GenerateDefaultShip()

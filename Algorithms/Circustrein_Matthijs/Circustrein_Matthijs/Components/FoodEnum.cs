@@ -8,7 +8,7 @@ namespace Circustrein_Matthijs.Components
 {
 	public class FoodEnum
 	{
-		public enum foodType
+		public enum FoodType
 		{
 			Herbivore,
 			Carnivore,

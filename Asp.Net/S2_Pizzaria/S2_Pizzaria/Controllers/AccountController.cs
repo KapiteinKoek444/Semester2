@@ -8,6 +8,7 @@ using BusinessLogic.Factory;
 using BusinessLogic.Manager;
 using BusinessLogic.Manager.User;
 using BusinessLogic.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace S2_Pizzaria.Controllers
 {
@@ -22,7 +23,7 @@ namespace S2_Pizzaria.Controllers
 		public ActionResult Login(LoginModel customer)
 		{
 			var user = UserManager.GetUser(customer.Uname, customer.Password);
-
+			SignInManager
 			if (user == null)
 				return View();
 
@@ -44,6 +45,11 @@ namespace S2_Pizzaria.Controllers
 
 			FormsAuthentication.SetAuthCookie(user.Id.ToString(), false);
 			return RedirectToAction("Index", "Home");
-		}	
+		}
+		
+		public ActionResult ChangePassword()
+		{
+			return View();
+		}
 	}
 }

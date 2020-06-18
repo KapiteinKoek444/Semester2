@@ -33,7 +33,7 @@ namespace Factory_test.UnitTest_ContainerMovement
 			Ship actual;
 
 			//Act
-			actual = ShipFactory.GenerateCustomShip(100);
+			actual = ShipFactory.GenerateCustomShip(100, new System.Drawing.Size(4,3));
 
 			//Assert
 			Assert.AreEqual(expectedWeight, actual.MaxWeight);

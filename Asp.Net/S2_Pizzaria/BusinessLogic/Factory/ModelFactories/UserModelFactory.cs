@@ -1,9 +1,10 @@
 ﻿using Repository.Users;
 using BusinessLogic.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using Repository.DBCon;
+using System.Linq;
+using System;
+using Repository.UnitOfWork;
+using BusinessLogic.Factory.ModelFactories;
 
 namespace BusinessLogic.Factory
 {
@@ -23,6 +24,7 @@ namespace BusinessLogic.Factory
 
 		public static UserModel ConvertUser(User user)
 		{
+			var order = OrderModelFactory.GetOrderModel(user.OrderId);
 			UserModel customerMod = new UserModel
 			{
 				Id = user.Id,
@@ -31,10 +33,19 @@ namespace BusinessLogic.Factory
 				Email = user.Email,
 				ZipCode = user.ZipCode,
 				HouseNr = user.HousNr,
-				IsEmployee = user.IsEmployee
+				IsEmployee = user.IsEmployee,
+				Order = order
 			};
 
 			return customerMod;
+		}
+
+		public static UserModel GetUserModel(Guid Id)
+		{
+			UnitOfWorkRepository unitofwork = new UnitOfWorkRepository();
+			var user = unitofwork.UserRepository.GetUserId(Id);
+			var model = ConvertUser(user);
+			return model;
 		}
 	}
 }

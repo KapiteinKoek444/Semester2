@@ -14,10 +14,11 @@ namespace Repository.Entities.Pizza_Components
 	public class Pizza : EntityModelBase
 	{
 		public Guid BottomId { get; set; }
+		public Guid OrderRuleId { get; set; }
 
-		public OrderRule OrderRule { get; set; }
-		public List<Pizza_Ingredient> PizzaIngredient { get; set; }
-		
+		[ForeignKey("PizzaId")]
+		public virtual List<Pizza_Ingredient> PizzaIngredient { get; set; }
+
 		public string Name { get; set; }
 		public double Price { get; set; }
 	}

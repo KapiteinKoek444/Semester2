@@ -38,7 +38,7 @@ namespace UnitTest_ContainerMovement.Object_test
 			Point expected = new Point(0, 0);
 
 			//Act
-			ship.AddCooledContainer(container);
+			ship.AddCooledContainer(container, ContainerMovement_V2.Objects.Enums.Types.Sides.Left);
 			Point actual = ship.piles.Where(x => x.containers.Count > 0).Select(x => x.Location).FirstOrDefault();
 
 			//Assert
@@ -92,7 +92,7 @@ namespace UnitTest_ContainerMovement.Object_test
 			ContainerMovement_V2.Objects.Enums.Types.Sides expected = ContainerMovement_V2.Objects.Enums.Types.Sides.Middle;
 
 			//Act
-			ContainerMovement_V2.Objects.Enums.Types.Sides actual = ship.CheckBalance();
+			ContainerMovement_V2.Objects.Enums.Types.Sides actual = ship.CheckBalance(false);
 
 			//Assert
 			Assert.AreEqual(expected, actual);
@@ -112,7 +112,7 @@ namespace UnitTest_ContainerMovement.Object_test
 			ContainerMovement_V2.Objects.Enums.Types.Sides expected = ContainerMovement_V2.Objects.Enums.Types.Sides.Right;
 
 			//Act
-			ContainerMovement_V2.Objects.Enums.Types.Sides actual = ship.CheckBalance();
+			ContainerMovement_V2.Objects.Enums.Types.Sides actual = ship.CheckBalance(false);
 
 			//Assert
 			Assert.AreEqual(expected, actual);

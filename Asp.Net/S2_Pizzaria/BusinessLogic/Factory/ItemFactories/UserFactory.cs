@@ -1,8 +1,8 @@
 ﻿using Repository.Users;
 using BusinessLogic.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using Repository.Entities.Connections;
+using System.Linq;
 
 namespace BusinessLogic.Factory
 {
@@ -31,6 +31,7 @@ namespace BusinessLogic.Factory
 				ZipCode = cusModel.ZipCode,
 				HousNr = cusModel.HouseNr,
 				IsEmployee = cusModel.IsEmployee,
+				OrderId = cusModel.Order.Id
 			};
 			return customer;
 		}

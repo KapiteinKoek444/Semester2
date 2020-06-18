@@ -19,7 +19,8 @@ namespace ContainerMovement_V2.Objects.Enums
 		{
 			Left,
 			Right,
-			Middle
+			Middle,
+			End
 		}
 	}
 }

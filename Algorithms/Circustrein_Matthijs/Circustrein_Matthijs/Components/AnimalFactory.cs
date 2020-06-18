@@ -31,9 +31,9 @@ namespace Circustrein_Matthijs.Components
 					size = 5;
 
 				if (chapping == 0)
-					animal = new Animal(foodType.Carnivore , size);
+					animal = new Animal(FoodType.Carnivore , size);
 				else
-					animal = new Animal(foodType.Herbivore, size);
+					animal = new Animal(FoodType.Herbivore, size);
 
 				animals.Add(animal);
 			}
@@ -57,7 +57,7 @@ namespace Circustrein_Matthijs.Components
 				else
 					size = 5;
 
-				Animal animal = new Animal(foodType.Carnivore , size);
+				Animal animal = new Animal(FoodType.Carnivore , size);
 				animals.Add(animal);
 			}
 
@@ -80,14 +80,14 @@ namespace Circustrein_Matthijs.Components
 				else
 					size = 5;
 
-				Animal animal = new Animal(foodType.Herbivore, size);
+				Animal animal = new Animal(FoodType.Herbivore, size);
 				animals.Add(animal);
 			}
 
 			return animals;
 		}
 
-		public static List<Animal> GenerateSelectAnimal(foodType type, int Size, int amount)
+		public static List<Animal> GenerateSelectAnimal(FoodType type, int Size, int amount)
 		{
 			List<Animal> Animals = new List<Animal>();
 

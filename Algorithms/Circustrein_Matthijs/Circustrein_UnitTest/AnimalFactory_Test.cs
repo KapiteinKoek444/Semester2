@@ -31,7 +31,7 @@ namespace Circustrein_UnitTest
 			int amount = 5;
 			for (int i = 0; i < amount; i++)
 			{
-				Animal animal = new Animal(FoodEnum.foodType.Carnivore, 3);
+				Animal animal = new Animal(FoodEnum.FoodType.Carnivore, 3);
 				expectedCarnivoreList.Add(animal);
 			}
 
@@ -50,7 +50,7 @@ namespace Circustrein_UnitTest
 			int amount = 5;
 			for (int i = 0; i < amount; i++)
 			{
-				Animal animal = new Animal(FoodEnum.foodType.Herbivore, 3);
+				Animal animal = new Animal(FoodEnum.FoodType.Herbivore, 3);
 				expectedHerbivoreList.Add(animal);
 			}
 
@@ -65,11 +65,11 @@ namespace Circustrein_UnitTest
 		public void GenerateSelectedAnimals_Test()
 		{
 			//Arrange
-			Animal expectedAnimal = new Animal(FoodEnum.foodType.Carnivore, 3);
+			Animal expectedAnimal = new Animal(FoodEnum.FoodType.Carnivore, 3);
 
 			int amount = 2;
 			int size = 3;
-			FoodEnum.foodType food = FoodEnum.foodType.Carnivore;
+			FoodEnum.FoodType food = FoodEnum.FoodType.Carnivore;
 
 			//Act
 			List <Animal> testingAnimals = AnimalFactory.GenerateSelectAnimal(food, size, amount);
@@ -84,8 +84,8 @@ namespace Circustrein_UnitTest
 		{
 			//Arrange
 			List<Animal> expectedAnimalList = new List<Animal>();
-			Animal animal1 = new Animal(FoodEnum.foodType.Carnivore, 5);
-			Animal animal2 = new Animal(FoodEnum.foodType.Herbivore, 1);
+			Animal animal1 = new Animal(FoodEnum.FoodType.Carnivore, 5);
+			Animal animal2 = new Animal(FoodEnum.FoodType.Herbivore, 1);
 			expectedAnimalList.Add(animal1);
 			expectedAnimalList.Add(animal2);
 

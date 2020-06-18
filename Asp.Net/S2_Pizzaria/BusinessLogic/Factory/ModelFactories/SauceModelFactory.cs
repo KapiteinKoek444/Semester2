@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Models.IngredientComponents;
 using Repository.Entities.Pizza_Components;
+using Repository.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,14 @@ namespace BusinessLogic.Factory.ModelFactories
 				Price = sauce.Price,
 			};
 
+			return model;
+		}
+
+		public static SauceModel GetSauce(Guid Id)
+		{
+			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
+			var sauce = unitOfWork.SauceRepository.GetSauceId(Id);
+			var model = ConvertSauce(sauce);
 			return model;
 		}
 	}

@@ -31,6 +31,12 @@ namespace Repository.Repositories
 			return user;
 		}
 
+		public User GetUserId(Guid Id)
+		{
+			var user = database.Users.Where(x => x.Id == Id).SingleOrDefault();
+			return user;
+		}
+
 		public List<User> GetUsers()
 		{
 			return database.Users.ToList();
@@ -39,13 +45,16 @@ namespace Repository.Repositories
 		public User UpdateUser(User newUser)
 		{
 			var user = database.Users.Where(x => x.Id == newUser.Id).FirstOrDefault();
-			if(user != null)
+			if (user != null)
 			{
 				user = newUser;
 				database.Users.AddOrUpdate(user);
 				database.SaveChanges();
 			}
-			return user;
+			else
+				AddUser(newUser);
+
+			return newUser;
 		}
 	}
 }

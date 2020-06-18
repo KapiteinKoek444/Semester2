@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace ContainerMovement_V2.Objects
 	public class Ship
 	{
 		public readonly List<Stack> piles = new List<Stack>();
+		public readonly bool IsEven = false;
 
 		public Size Size { get; set; }
 
@@ -33,119 +35,148 @@ namespace ContainerMovement_V2.Objects
 			{
 				for (int j = 0; j < Size.Height; j++)
 				{
-					Stack pile = new Stack(new Point(i,j));
+					Stack pile = new Stack(new Point(i, j));
 					piles.Add(pile);
 				}
 			}
+
+			if (Size.Height % 2 == 0)
+				IsEven = true;
 		}
 
-		public bool AddCooledContainer(ShipContainer c)
+		public bool AddCooledContainer(ShipContainer c, Types.Sides side)
 		{
-			int amount = 0;
-			while (true)
+
+			foreach (var pile in piles)
 			{
-				for (int j = 0; j < Size.Height; j++)
+				Point point = pile.Location;
+				if (IsEven)
 				{
-					Point point = new Point(0, j);
-					if (piles.Where(x => x.Location == point).Sum(x => x.containers.Count) == amount)
-					{
-						if (piles.Where(x => x.Location == point).FirstOrDefault().AddContainer(c))
-							return true;
+					if (side == Types.Sides.Left)
+						if (point.X == 0 && point.Y + 1 <= Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
 
-						return false;
-					}
+					if (side == Types.Sides.Right)
+						if (point.X == 0 && point.Y + 1 > Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
+				}
+				else
+				{
+					if (side == Types.Sides.Left)
+						if (point.X == 0 && point.Y + 1 <= Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
 
-					if (((j + 1) % 3) == 0)
-						amount++;
+					if (side == Types.Sides.Right)
+						if (point.X == 0 && point.Y + 1 > (Size.Height / 2) + 1)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
+
+					if (side == Types.Sides.Middle)
+						if (point.X == 0 && point.Y + 1 == (Size.Height / 2) + 1)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
 				}
 			}
+			return false;
 		}
 
 		public bool AddValueableContainer(ShipContainer c, Types.Sides side)
 		{
-			int amount = 0;
-			while (true)
+			foreach (var pile in piles)
 			{
-				for (int i = 0; i < Size.Width; i++)
+				Point point = pile.Location;
+				if (IsEven)
 				{
 					if (side == Types.Sides.Left)
-					{
-						Point point = new Point(i, 0);
-						if (piles.Where(x => x.Location == point).Sum(x => x.containers.Count) == amount)
-						{
-							if (piles.Where(x => x.Location == point).FirstOrDefault().AddContainer(c))
-								return true;
-
-							return false;
-						}
-					}
+						if (point.Y + 1 <= Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (CheckAccesable(point))
+									if (pile.AddContainer(c))
+										return true;
 
 					if (side == Types.Sides.Right)
-					{
-						Point point = new Point(i, Size.Height - 1);
-						if (piles.Where(x => x.Location == point).Sum(x => x.containers.Count) == amount)
-						{
-							if (piles.Where(x => x.Location == point).FirstOrDefault().AddContainer(c))
-								return true;
+						if (point.Y + 1 > Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (CheckAccesable(point))
+									if (pile.AddContainer(c))
+										return true;
+				}
+				else
+				{
+					if (side == Types.Sides.Left)
+						if (point.Y + 1 <= Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (CheckAccesable(point))
+									if (pile.AddContainer(c))
+										return true;
 
-							return false;
-						}
-					}
+					if (side == Types.Sides.Right)
+						if (point.Y + 1 > (Size.Height / 2) + 1)
+							if (CheckForValueables(pile))
+								if (CheckAccesable(point))
+									if (pile.AddContainer(c))
+										return true;
 
-					if (((i + 1) % 4) == 0)
-						amount++;
-
+					if (side == Types.Sides.Middle)
+						if (point.Y + 1 == (Size.Height / 2) + 1)
+							if (CheckForValueables(pile))
+								if (CheckAccesable(point))
+									if (pile.AddContainer(c))
+										return true;
 				}
 			}
+			return false;
 		}
 
 		public bool AddRegularContainer(ShipContainer c, Types.Sides side)
 		{
-			int amount = 0;
-			while (true)
+			foreach (var pile in piles)
 			{
-				for (int i = 0; i < Size.Width; i++)
+				Point point = pile.Location;
+				if (IsEven)
 				{
 					if (side == Types.Sides.Left)
-					{
-						Point point = new Point(i, 0);
-						if (piles.Where(x => x.Location == point).Sum(x => x.containers.Count) == amount)
-						{
-							if (piles.Where(x => x.Location == point).FirstOrDefault().AddContainer(c))
-								return true;
-
-							return false;
-						}
-					}
+						if (point.Y + 1 <= Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
 
 					if (side == Types.Sides.Right)
-					{
-						Point point = new Point(i, Size.Height - 1);
-						if (piles.Where(x => x.Location == point).Sum(x => x.containers.Count) == amount)
-						{
-							if (piles.Where(x => x.Location == point).FirstOrDefault().AddContainer(c))
-								return true;
+						if (point.Y + 1 > Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
+				}
+				else
+				{
+					if (side == Types.Sides.Left)
+						if (point.Y + 1 <= Size.Height / 2)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
 
-							return false;
-						}
-					}
+					if (side == Types.Sides.Right)
+						if (point.Y + 1 > (Size.Height / 2) + 1)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
 
 					if (side == Types.Sides.Middle)
-					{
-						Point point = new Point(i, 1);
-						if (piles.Where(x => x.Location == point).Sum(x => x.containers.Count) == amount)
-						{
-							if (piles.Where(x => x.Location == point).FirstOrDefault().AddContainer(c))
-								return true;
-
-							return false;
-						}
-					}
-
-					if (((i + 1) % 4) == 0)
-						amount++;
+						if (point.Y + 1 == (Size.Height / 2) + 1)
+							if (CheckForValueables(pile))
+								if (pile.AddContainer(c))
+									return true;
 				}
 			}
+			return false;
 		}
 
 		public bool CheckOccupation(Point point)
@@ -156,30 +187,82 @@ namespace ContainerMovement_V2.Objects
 			return true;
 		}
 
-		public Types.Sides CheckBalance()
+		public Types.Sides CheckBalance(bool endCheck)
 		{
 			LeftWeight = 0;
 			RightWeight = 0;
 			Weight = 0;
 
-			foreach (var stack in piles)
+			decimal side;
+
+			if (IsEven)
 			{
-				if (stack.Location.Y == 0)
-					LeftWeight += stack.getWeight();
+				side = Size.Height / 2;
+				foreach (var stack in piles)
+				{
+					if (stack.Location.Y + 1 > side)
+						LeftWeight += stack.getWeight();
 
-				if (stack.Location.Y == Size.Height - 1)
-					RightWeight += stack.getWeight();
+					else if (stack.Location.Y + 1 <= side)
+						RightWeight += stack.getWeight();
 
-				Weight += stack.getWeight();
+					Weight += stack.getWeight();
+				}
+
+			}
+			else
+			{
+				side = ((Size.Height - 1) / 2) + 1;
+				foreach (var stack in piles)
+				{
+					if (stack.Location.Y + 1 > side)
+						LeftWeight += stack.getWeight();
+
+					if (stack.Location.Y + 1 < side)
+						RightWeight += stack.getWeight();
+
+					Weight += stack.getWeight();
+				}
+
 			}
 
-			if (LeftWeight >= RightWeight * 1.2)
-				return Types.Sides.Right;
-
-			if (RightWeight >= LeftWeight * 1.2)
+			if (LeftWeight >= RightWeight * 1.1)
 				return Types.Sides.Left;
 
-			return Types.Sides.Middle;
+			if (RightWeight >= LeftWeight * 1.1)
+				return Types.Sides.Right;
+
+			if (endCheck)
+				return Types.Sides.End;
+
+			if (!IsEven)
+				return Types.Sides.Middle;
+
+			return Types.Sides.Left;
+		}
+
+		public bool CheckForValueables(Stack pile)
+		{
+			if (pile.containers.Any(x => x.Type == Types.ContainerTypes.Valueable))
+				return false;
+
+			return true;
+		}
+
+		public bool CheckAccesable(Point point)
+		{
+			int chanses = 0;
+
+			foreach (var pile in piles.Where(x => x.Location.X == point.X - 1 || x.Location.X == point.X + 1).ToList())
+			{
+				if (pile.height > piles.Where(x => x.Location.X == point.X).FirstOrDefault().height)
+					chanses++;
+
+				if (chanses > 1)
+					return false;
+			}
+
+			return true;
 		}
 	}
 }

@@ -4,14 +4,13 @@ using ContainerMovement_V2.Objects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
 namespace UnitTest_ContainerMovement.Logic_test
 {
 	[TestClass]
-	public class Dock_Test
+	public class Solving_Tests
 	{
 		Dock Test_Dock = new Dock();
 
@@ -75,7 +74,7 @@ namespace UnitTest_ContainerMovement.Logic_test
 		public void AddValueableContainers_Test()
 		{
 			//Arrange
-			List<ShipContainer> expected = ContainerFactory.GenereateSpecificContainer(7000, ContainerMovement_V2.Objects.Enums.Types.ContainerTypes.Valueable, 10);
+			List<ShipContainer> expected = ContainerFactory.GenereateSpecificContainer(7000, ContainerMovement_V2.Objects.Enums.Types.ContainerTypes.Valueable, 5);
 
 			//Act
 			Test_Dock.AddValueableContainers(expected);
@@ -87,44 +86,6 @@ namespace UnitTest_ContainerMovement.Logic_test
 
 			//Assert
 			Assert.AreEqual(expected.Count, actual.Count);
-		}
-
-		[TestMethod]
-		public void SolveContainer_Test()
-		{
-			//Arrange
-			List<ShipContainer> Containers = ContainerFactory.GenerateRandomContainers(20);
-			Test_Dock.AddContainer(Containers);
-			bool expected = true;
-
-			//Act
-			bool actual = Test_Dock.AssignContainers();
-
-			//Assert
-			Assert.AreEqual(expected, actual);
-		}
-
-		[TestMethod]
-		public void CheckSides_Test()
-		{
-			//Arrange
-			ShipContainer con = ContainerFactory.GenereateSpecificContainer(70000, ContainerMovement_V2.Objects.Enums.Types.ContainerTypes.Regular, 1)[0];
-			
-			Ship expected = ShipFactory.GenerateDefaultShip();
-			expected.AddRegularContainer(con, ContainerMovement_V2.Objects.Enums.Types.Sides.Left);
-			expected.AddRegularContainer(con, ContainerMovement_V2.Objects.Enums.Types.Sides.Right);
-			expected.CheckBalance();
-
-			Test_Dock.Ship.AddRegularContainer(con, ContainerMovement_V2.Objects.Enums.Types.Sides.Left);
-
-			//Act
-			Test_Dock.CheckSides(con);
-			var actual = Test_Dock.Ship;
-			actual.CheckBalance();
-
-			//Assert
-			Assert.AreEqual(expected.LeftWeight, actual.LeftWeight);
-			Assert.AreEqual(expected.RightWeight, actual.RightWeight);
 		}
 	}
 }

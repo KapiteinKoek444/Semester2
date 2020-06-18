@@ -7,7 +7,7 @@ namespace BusinessLogic.Models.IngredientComponents
 {
 	public class SauceModel : EntityModelBase
 	{
-		public BottomModel bottom { get; set; }
+		public Guid BottomId { get; set; }
 		public string Name { get; set; }
 		public bool IsSpicy { get; set; }
 		public double Price { get; set; }

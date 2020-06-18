@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Models.IngredientComponents;
 using Repository.Entities.Pizza_Components.IngredientTypes;
+using Repository.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,14 @@ namespace BusinessLogic.Factory
 				IsVegetarian = ingredient.IsVegetarian,
 			};
 
+			return model;
+		}
+
+		public static IngredientModel GetIngredientModel(Guid Id)
+		{
+			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
+			var ingredient = unitOfWork.IngredientRepository.GetIngredient(Id);
+			var model = ConvertIngredients(ingredient);
 			return model;
 		}
 	}

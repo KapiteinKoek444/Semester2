@@ -15,6 +15,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -53,20 +56,32 @@
   <ItemGroup>
     <Compile Include="Factory\ItemFactories\BottomFactory.cs" />
     <Compile Include="Factory\ItemFactories\IngredientFactory.cs" />
+    <Compile Include="Factory\ItemFactories\OrderFactory.cs" />
+    <Compile Include="Factory\ItemFactories\OrderRuleFactory.cs" />
+    <Compile Include="Factory\ItemFactories\PizzaIngredientFactory.cs" />
     <Compile Include="Factory\ItemFactories\SauceFactory.cs" />
     <Compile Include="Factory\ModelFactories\BottomModelFacotry.cs" />
     <Compile Include="Factory\ModelFactories\IngredientModelFactory.cs" />
     <Compile Include="Factory\ItemFactories\PizzaFactory.cs" />
+    <Compile Include="Factory\ModelFactories\OrderModelFactory.cs" />
+    <Compile Include="Factory\ModelFactories\OrderRuleModelFactory.cs" />
+    <Compile Include="Factory\ModelFactories\PizzaIngredientModelFactory.cs" />
     <Compile Include="Factory\ModelFactories\PizzaModelFactory.cs" />
     <Compile Include="Factory\ModelFactories\SauceModelFactory.cs" />
     <Compile Include="Factory\ModelFactories\UserModelFactory.cs" />
     <Compile Include="Factory\ItemFactories\UserFactory.cs" />
+    <Compile Include="Manager\PizzaComponents\BottomManager.cs" />
+    <Compile Include="Manager\PizzaComponents\IngredientManager.cs" />
+    <Compile Include="Manager\PizzaComponents\SauceManager.cs" />
+    <Compile Include="Manager\Pizza\PizzaManager.cs" />
     <Compile Include="Manager\User\OrderManager.cs" />
     <Compile Include="Manager\User\UserManager.cs" />
     <Compile Include="Models\Base\EntityModelBase.cs" />
-    <Compile Include="Models\ErrorViewModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ViewModels\ErrorViewModel.cs" />
+    <Compile Include="Models\ViewModels\LoginModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\OrderRuleModel.cs" />
+    <Compile Include="Models\PizzaIngredientModel.cs" />
     <Compile Include="Models\PizzaModels\BottomModel.cs" />
     <Compile Include="Models\PizzaModels\IngredientModel.cs" />
     <Compile Include="Models\PizzaModels\PizzaModel.cs" />
@@ -84,10 +99,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Manager\PizzaComponents\" />
-    <Folder Include="Manager\Pizza\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

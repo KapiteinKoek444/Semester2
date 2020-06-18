@@ -1,12 +1,7 @@
 ﻿using BusinessLogic.Models;
 using BusinessLogic.Factory;
-using Repository.DBCon;
-using Repository.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Repository.UnitOfWork;
 
 namespace BusinessLogic.Manager.User

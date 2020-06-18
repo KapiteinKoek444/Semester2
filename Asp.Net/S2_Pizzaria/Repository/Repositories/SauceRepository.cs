@@ -2,6 +2,7 @@
 using Repository.Entities.Pizza_Components;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,9 +35,28 @@ namespace Repository.Repositories
 			return chosen;
 		}
 
+		public Sauce GetSauceId(Guid Id)
+		{
+			var chosen = database.Sauce.Where(x => x.Id == Id).FirstOrDefault();
+			return chosen;
+		}
+
 		public List<Sauce> GetAllSauce()
 		{
 			return database.Sauce.ToList();
+		}
+
+		public void AddOrUpdate(Sauce newSauce)
+		{
+			var sauce = database.Sauce.Where(x => x.Id == newSauce.Id).FirstOrDefault();
+			if (sauce != null)
+			{
+				sauce = newSauce;
+				database.Sauce.AddOrUpdate(sauce);
+				database.SaveChanges();
+			}
+			else
+				AddSauce(newSauce);
 		}
 	}
 }

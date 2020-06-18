@@ -29,11 +29,11 @@ namespace CircusTrein_Opdracht.Components
 			if (FilledAnimals.Sum(animal => animal.Size) + newAnimal.Size > MaxWeight)
 				return false;
 
-			if (FilledAnimals.Any(animal => animal.Food == foodType.Carnivore))
-				return !(newAnimal.Food == foodType.Carnivore || newAnimal.Size <= FilledAnimals.First(animal => animal.Food == foodType.Carnivore).Size);
+			if (FilledAnimals.Any(animal => animal.Food == FoodType.Carnivore))
+				return !(newAnimal.Food == FoodType.Carnivore || newAnimal.Size <= FilledAnimals.First(animal => animal.Food == FoodType.Carnivore).Size);
 
 			if (FilledAnimals.Count > 0)
-				return !(newAnimal.Food == foodType.Carnivore && newAnimal.Size > FilledAnimals.Min(animal => animal.Size));
+				return !(newAnimal.Food == FoodType.Carnivore && newAnimal.Size > FilledAnimals.Min(animal => animal.Size));
 
 			return true;
 		}

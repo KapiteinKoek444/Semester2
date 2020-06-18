@@ -13,6 +13,14 @@ namespace S2_Pizzaria.Controllers
             return View();
         }
 
+        public ActionResult ViewOrder()
+        {
+            return View();
+        }
 
+        public ActionResult OrderOrder()
+        {
+            return View();
+        }
     }
 }

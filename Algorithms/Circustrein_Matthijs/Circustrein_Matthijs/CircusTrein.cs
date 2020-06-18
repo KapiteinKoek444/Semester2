@@ -30,7 +30,7 @@ namespace Circustrein_Matthijs
 		//Sorting animals
 		private void Sort_Animals_Click(object sender, EventArgs e)
 		{
-			List<Animal> AnimalsSorted = AllAnimalList.OrderBy(animal => animal.Size).ThenBy(animal => animal.Food == foodType.Carnivore).ToList();
+			List<Animal> AnimalsSorted = AllAnimalList.OrderBy(animal => animal.Size).ThenBy(animal => animal.Food == FoodType.Carnivore).ToList();
 
 			SetAnimalBox(AnimalsSorted);
 		}
@@ -103,14 +103,14 @@ namespace Circustrein_Matthijs
 		{
 			int animalSize = Convert.ToInt32(cBSize);
 			int animalAmount = Convert.ToInt32(numUDAnimalCount.Value);
-			var type = new foodType();
+			var type = new FoodType();
 
 			if (cBCarnivore.Text == "Carnivore")
-				type = foodType.Carnivore;
+				type = FoodType.Carnivore;
 			else if (cBCarnivore.Text == "Herbivore")
-				type = foodType.Herbivore;
+				type = FoodType.Herbivore;
 			else if (cBCarnivore.Text == "Omnivore")
-				type = foodType.Omnivore;
+				type = FoodType.Omnivore;
 
 			List<Animal> AnimalsToBeAdded = AnimalFactory.GenerateSelectAnimal(type, animalSize, animalAmount);
 			AllAnimalList = AnimalFactory.MergeAnimalLists(AllAnimalList, AnimalsToBeAdded);

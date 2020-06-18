@@ -18,9 +18,9 @@ namespace ContainerMovement_V2.Factories
 			for (int i = 0; i < amount; i++)
 			{
 				ShipContainer container;
-				int weight = rnd.Next(4, 10);
+				int weight = rnd.Next(4, 20);
 				weight = weight * 1000;
-				int type = rnd.Next(3);
+				int type = rnd.Next(5);
 
 				if (type == 1)
 					container = new ShipContainer(weight, Types.ContainerTypes.Cooled);

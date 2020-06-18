@@ -17,6 +17,8 @@ namespace Repository.UnitOfWork
 		private IngredientRepository ingredientRepository;
 		private BottomRepository bottomRepository;
 		private SauceRepository sauceRepository;
+		private Pizza_IngredientRepository pizzaIngredientRepository;
+		private OrderRuleRepository orderRuleRepository;
 
 		public UnitOfWorkRepository()
 		{
@@ -92,6 +94,30 @@ namespace Repository.UnitOfWork
 					sauceRepository = new SauceRepository(context);
 				}
 				return sauceRepository;
+			}
+		}
+
+		public Pizza_IngredientRepository PizzaIngredientRepository
+		{
+			get
+			{
+				if (pizzaIngredientRepository == null)
+				{
+					pizzaIngredientRepository = new Pizza_IngredientRepository(context);
+				}
+				return pizzaIngredientRepository;
+			}
+		}
+
+		public OrderRuleRepository OrderRuleRepository
+		{
+			get
+			{
+				if (orderRuleRepository == null)
+				{
+					orderRuleRepository = new OrderRuleRepository(context);
+				}
+				return orderRuleRepository;
 			}
 		}
 	}

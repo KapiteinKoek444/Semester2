@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Models.Base;
+using BusinessLogic.Models.IngredientComponents;
 using Repository.Users;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace BusinessLogic.Models
 {
 	public class OrderModel : EntityModelBase
 	{
-		public User User { get; set; }
+		public Guid UserId { get; set; }
+		public List<OrderRuleModel> OrderRules { get; set; }
 	}
 }
