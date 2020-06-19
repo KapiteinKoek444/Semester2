@@ -2,6 +2,7 @@
 using CircusTrein_Opdracht.Components;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Circustrein_UnitTest
 {
@@ -65,6 +66,23 @@ namespace Circustrein_UnitTest
 			//Assert
 			Assert.AreEqual(expectedOutcome, actualOutcome);
 		}
+
+		[TestMethod]
+		public void CheckContents_Test()
+		{
+			//Arrange
+			Animal expected1 = new Animal(FoodEnum.FoodType.Carnivore, 5);
+			Wagon wagon = new Wagon();
+
+			Animal actual = AnimalFactory.GenerateSelectAnimal(FoodEnum.FoodType.Carnivore, 5, 1).FirstOrDefault();
+			//Act
+			wagon.AddAnimal(actual);
+
+			//Assert
+			Assert.AreEqual(expected1.Food, wagon.FilledAnimals.FirstOrDefault().Food);
+			Assert.AreEqual(expected1.Size, wagon.FilledAnimals.FirstOrDefault().Size);
+		}
+	}
 	}
 }
 

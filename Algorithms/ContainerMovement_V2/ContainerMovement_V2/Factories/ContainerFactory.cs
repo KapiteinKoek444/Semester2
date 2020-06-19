@@ -10,9 +10,9 @@ namespace ContainerMovement_V2.Factories
 {
 	public static class ContainerFactory
 	{
-		public static List<ShipContainer> GenerateRandomContainers(int amount)
+		public static List<ShipContainer> GenerateRandomContainers(int amount, int seed)
 		{
-			Random rnd = new Random();
+			Random rnd = new Random(seed);
 			List<ShipContainer> containers = new List<ShipContainer>();
 
 			for (int i = 0; i < amount; i++)

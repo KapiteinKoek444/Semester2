@@ -3,13 +3,13 @@ using BusinessLogic.Factory.ItemFactories;
 using BusinessLogic.Factory.ModelFactories;
 using BusinessLogic.Models;
 using BusinessLogic.Models.IngredientComponents;
+using BusinessLogic.Models.ViewModels;
 using Repository.Entities.Connections;
+using Repository.Entities.Pizza_Components.IngredientTypes;
 using Repository.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic.Manager.Pizza
 {
@@ -92,24 +92,61 @@ namespace BusinessLogic.Manager.Pizza
 			return pizza;
 		}
 
-		public static PizzaModel OrderPizza(Guid userId, PizzaModel model)
+		public static OrderViewModel OrderPizza(Guid userId, Guid pizzaId, Guid bottomId, Guid sauceId, List<Guid> ingredientId)
 		{
 			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
-			OrderRuleModel orderrule = new OrderRuleModel();
+			
+			OrderRule orderrule = new OrderRule();
 			var order = unitOfWork.OrderRepository.GetAllOrders().Where(x => x.UserId == userId).FirstOrDefault();
-			var modelOrder = OrderModelFactory.ConvertOrder(order);
-			
-			orderrule.OrderId = order.Id;
-			orderrule.Pizza = model;
-			
-			model.OrderRuleId = orderrule.Id;
-			modelOrder.OrderRules.Add(orderrule);
+			var piz = unitOfWork.PizzaRepository.GetPizzaId(pizzaId);
+			var bot = unitOfWork.BottomRepository.GetBottom(bottomId);
+			var sc = unitOfWork.SauceRepository.GetSauceId(sauceId);
 
-			unitOfWork.OrderRuleRepository.AddOrderRule(OrderRuleFactory.ConvertOrderRuleModel(orderrule));
-			unitOfWork.OrderRepository.AddOrUpdate(OrderFactory.ConvertOrderModel(modelOrder));
-			unitOfWork.PizzaRepository.UpdatePizza(PizzaFactory.ConvertPizzaModel(model));
+			if(order == null)
+			{
+				order = new Order();
+				order.Id = Guid.NewGuid();
+				order.OrderRule = new List<OrderRule>();
+			}
+
+			List<Ingredients> _Ing = new List<Ingredients>();
+			foreach(var ing in ingredientId)
+			{
+				var ingr = unitOfWork.IngredientRepository.GetAllIngredients().Where(x => x.Id == ing).FirstOrDefault();
+				_Ing.Add(ingr);
+			}
 			
-			return model;
+			foreach(var ing in _Ing)
+			{
+				Pizza_Ingredient pizza_Ingredient = new Pizza_Ingredient();
+				pizza_Ingredient.Id = Guid.NewGuid();
+				pizza_Ingredient.IngriedientId = ing.Id;
+				pizza_Ingredient.PizzaIngredient_Id = pizzaId;
+				unitOfWork.PizzaIngredientRepository.AddPizza_Ingredients(pizza_Ingredient);
+				piz.PizzaIngredient.Add(pizza_Ingredient);
+			}
+			bot.SauceId = sc.Id;
+			piz.BottomId = bot.Id;
+			piz.OrderRuleId = orderrule.Id;
+
+			orderrule.Id = Guid.NewGuid();
+			orderrule.OrderId = order.Id;
+			orderrule.PizzaId = piz.Id;
+			
+			order.OrderRule.Add(orderrule);			
+
+			unitOfWork.PizzaRepository.UpdatePizza(piz);
+			unitOfWork.OrderRepository.AddOrUpdate(order);
+			unitOfWork.OrderRuleRepository.AddOrUpdate(orderrule);
+			var pizza = PizzaModelFactory.ConvertPizza(piz);
+			var orderViewModel = new OrderViewModel()
+			{
+				pizza = pizza,
+				bottom = BottomModelFacotry.ConvertBottom(bot),
+				sauce = SauceModelFactory.ConvertSauce(sc),
+				ingredients = IngredientModelFactory.ConvertIngredients(_Ing)
+			};
+			return orderViewModel;
 		}
 
 		public static PizzaModel AddPizza(PizzaModel model)
@@ -119,6 +156,24 @@ namespace BusinessLogic.Manager.Pizza
 			var pizza = PizzaFactory.ConvertPizzaModel(model);
 			unitOfWork.PizzaRepository.AddPizza(pizza);
 			return model;
+		}
+
+		public static void OrderOrder(OrderViewModel model)
+		{
+			var pizza = PizzaFactory.ConvertPizzaModel(model.pizza);
+			var bottom = BottomFactory.ConvertBottom(model.bottom);
+			var sauce = SauceFactory.ConvertSauce(model.sauce);
+			var ingredients = IngredientFactory.ConvertIngredientModels(model.ingredients);
+
+			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
+			unitOfWork.BottomRepository.RemoveBottom(bottom.Id);
+			unitOfWork.PizzaRepository.RemovePizza(pizza.Id);
+			unitOfWork.SauceRepository.RemoveSauce(sauce.Id);
+			
+			foreach (var ing in ingredients)
+			{
+				unitOfWork.IngredientRepository.RemoveIngredient(ing.Id);
+			}
 		}
 	}
 }

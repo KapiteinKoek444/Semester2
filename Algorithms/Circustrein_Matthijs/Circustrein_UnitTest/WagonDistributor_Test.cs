@@ -10,6 +10,7 @@ namespace Circustrein_UnitTest
 	[TestClass]
 	public class WagonDistributor_Test
 	{
+		int seed = 100;
 		[TestMethod]
 		public void Distribute_Test_01()
 		{
@@ -52,7 +53,7 @@ namespace Circustrein_UnitTest
 			//Arrange
 			int expectedWagonAmount = 5;
 
-			List<Animal> DistributedAnimals = AnimalFactory.GenerateCarnivores(expectedWagonAmount);
+			List<Animal> DistributedAnimals = AnimalFactory.GenerateCarnivores(expectedWagonAmount, seed);
 
 			//Act
 			List<Wagon> actualWagonList = WagonDistributor.Distribute(DistributedAnimals);
@@ -86,7 +87,7 @@ namespace Circustrein_UnitTest
 			int expected = 10;
 
 			List<Wagon> wagons;
-			List<Animal> animals = AnimalFactory.GenerateRandomAnimals(10);
+			List<Animal> animals = AnimalFactory.GenerateRandomAnimals(10, seed);
 
 			//Act
 			wagons = WagonDistributor.Distribute(animals);

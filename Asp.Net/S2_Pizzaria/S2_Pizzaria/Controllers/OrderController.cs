@@ -1,7 +1,9 @@
 ﻿using BusinessLogic.Manager.Pizza;
+using BusinessLogic.Manager.PizzaComponents;
 using BusinessLogic.Manager.User;
 using BusinessLogic.Models;
 using BusinessLogic.Models.IngredientComponents;
+using BusinessLogic.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,86 +12,100 @@ using System.Web.Mvc;
 
 namespace S2_Pizzaria.Controllers
 {
-    public class OrderController : Controller
-    {
-        PizzaModel pizzaModel = new PizzaModel();
-        BottomModel bottomModel = new BottomModel();
-        SauceModel sauceModel = new SauceModel();
-        List<IngredientModel> ingredientModel = new List<IngredientModel>();
+	public class OrderController : Controller
+	{
+		public ActionResult PizzaBasePicker()
+		{
+			var models = PizzaManager.getAllPizzas();
+			return View(models);
+		}
 
-        public ActionResult PizzaBasePicker()
-        {
-            var models = PizzaManager.getAllPizzas();
-            return View(models);
-        }
+		public ActionResult PickedPizza(Guid id)
+		{
+			var pizza = PizzaManager.GetPizza(id);
+			OrderViewModel order = new OrderViewModel();
+			order.pizza = pizza;
+			TempData["order"] = order;
+			return RedirectToAction("BottomPicker");
+		}
 
-        [HttpPost]
-        public ActionResult PizzaBasePicker(PizzaModel model)
-        {
-            pizzaModel = model;
-            return RedirectToAction("BottomPicker");
-        }
+		public ActionResult BottomPicker()
+		{
+			var models = BottomManager.GetAllBottoms();
+			return View(models);
+		}
 
-        public ActionResult BottomPicker()
-        {
-            return View();
-        }
+		public ActionResult PickedBottom(Guid id)
+		{
+			var order = TempData["order"] as OrderViewModel;
+			order.bottom = BottomManager.GetAllBottoms().Where(x => x.Id == id).FirstOrDefault();
+			TempData["order"] = order;
+			return RedirectToAction("SaucePicker");
+		}
 
-        [HttpPost]
-        public ActionResult BottomPicker(BottomModel model)
-        {
-            bottomModel = model;
-            return RedirectToAction("SaucePicker");
-        }
+		public ActionResult SaucePicker()
+		{
+			var models = SauceManager.GetAllSauces();
+			return View(models);
+		}
 
-        public ActionResult SaucePicker()
-        {
-            return View();
-        }
+		public ActionResult PickedSauce(Guid id)
+		{
+			var sauce = SauceManager.GetAllSauces().Where(x => x.Id == id).FirstOrDefault();
 
-        [HttpPost]
-        public ActionResult SaucePicker(SauceModel model)
-        {
-            sauceModel = model;
-            return RedirectToAction("IngredientsPicker");
-        }
+			var order = TempData["order"] as OrderViewModel;
+			order.sauce = sauce;
+			TempData["order"] = order;
+			return RedirectToAction("IngredientsPicker");
+		}
 
-        public ActionResult IngredientsPicker()
-        {
-            return View();
-        }
+		public ActionResult IngredientsPicker()
+		{
+			var models = IngredientManager.GetIngredients();
+			return View(models);
+		}
 
-        [HttpPost]
-        public ActionResult IngredientsPicker(List<IngredientModel> models)
-        {
-            ingredientModel = models;
-            return RedirectToAction("AddOrder"); 
-        }
+		[HttpPost]
+		public JsonResult SetIngredients(string[] data)
+		{
+			List<IngredientModel> ingredients = new List<IngredientModel>();
+			foreach (var str in data)
+			{
+				var id = Guid.Parse(str);
+				ingredients.Add(IngredientManager.GetIngredients().Where(x => x.Id == id).FirstOrDefault());
+			}
+			var order = TempData["order"] as OrderViewModel;
+			order.ingredients = ingredients;
+			TempData["order"] = order;
+			return Json(new { redirectTo = Url.Action("AddOrder", "Order", order) });
+		}
 
-        [HttpPost]
-        public ActionResult AddOrder(PizzaModel model)
-        {
-            var cookie = HttpContext.User.Identity.Name;
-            PizzaManager.OrderPizza(Guid.Parse(cookie), model);
-            return View();
-        }
+		public ActionResult AddOrder()
+		{
+			var id = new List<Guid>();
+			var order = TempData["order"] as OrderViewModel;
 
-        public ActionResult ViewOrder()
-        {
-            var cookie = HttpContext.User.Identity.Name;
-            var order = OrderManager.GetOrder(Guid.Parse(cookie));
-            var pizzas = new List<PizzaModel>();
-            foreach(var orderrule in order.OrderRules)
-            {
-                var model = PizzaManager.GetPizza(orderrule.Pizza.Id);
-                pizzas.Add(model);
-            }
-            return View(pizzas);
-        }
+			foreach (var i in order.ingredients)
+			{
+				id.Add(i.Id);
+			}
+			var cookie = HttpContext.User.Identity.Name;
+			var orderviewmodel = PizzaManager.OrderPizza(Guid.Parse(cookie), order.pizza.Id, order.bottom.Id, order.sauce.Id, id);
 
-        public ActionResult OrderOrder()
-        {
-            return View();
-        }
-    }
+			orderviewmodel.TotalPrice = orderviewmodel.ingredients.Sum(x => x.Price);
+			orderviewmodel.TotalPrice += orderviewmodel.pizza.Price;
+			orderviewmodel.TotalPrice += orderviewmodel.sauce.Price;
+			orderviewmodel.TotalPrice += orderviewmodel.bottom.Price;
+
+			TempData["order"] = orderviewmodel;
+			return View(orderviewmodel);
+		}
+
+		public ActionResult OrderOrder()
+		{
+			var order = TempData["order"] as OrderViewModel;
+			PizzaManager.OrderOrder(order);
+			return RedirectToAction("Index", "Home");
+		}
+	}
 }

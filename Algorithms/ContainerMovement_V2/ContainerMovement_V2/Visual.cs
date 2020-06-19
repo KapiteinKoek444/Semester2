@@ -16,6 +16,7 @@ namespace ContainerMovement_V2
 	public partial class containerMovementForm : Form
 	{
 		Dock dock;
+		int seed = 100;
 		List<TextBox> tboxes = new List<TextBox>();
 
 		public containerMovementForm()
@@ -26,7 +27,7 @@ namespace ContainerMovement_V2
 		private void AddContainers_Click(object sender, EventArgs e)
 		{
 			int amount = (int)numUDContainerAmount.Value;
-			dock.AddContainer(ContainerFactory.GenerateRandomContainers(amount));
+			dock.AddContainer(ContainerFactory.GenerateRandomContainers(amount, seed));
 
 			VisualiseContainers();
 		}

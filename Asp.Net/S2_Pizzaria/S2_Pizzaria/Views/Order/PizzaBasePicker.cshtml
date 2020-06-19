@@ -26,9 +26,7 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
 		<td>
-			<form action="PizzaBasePicker" method="post">
-				<input type="submit" value="Choose" class="btn btn-default" />
-			</form>
+			@Html.ActionLink("Choose", "PickedPizza", new { id = item.Id }) |
 		</td>
     </tr>
 }

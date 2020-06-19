@@ -13,6 +13,7 @@ namespace UnitTest_ContainerMovement.Logic_test
 	public class Balance_Tests
 	{
 		Dock Test_Dock = new Dock();
+		int seed = 100;
 		[TestMethod]
 		public void CheckSides_Test()
 		{
@@ -98,7 +99,7 @@ namespace UnitTest_ContainerMovement.Logic_test
 		public void SolveContainer_Test_01()
 		{
 			//Arrange
-			List<ShipContainer> Containers = ContainerFactory.GenerateRandomContainers(100);
+			List<ShipContainer> Containers = ContainerFactory.GenerateRandomContainers(100, seed);
 			Test_Dock.AddContainer(Containers);
 			bool expected = false;
 
@@ -107,6 +108,28 @@ namespace UnitTest_ContainerMovement.Logic_test
 
 			//Assert
 			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
+		public void AllToTheRight_Even()
+		{
+			//Arrange
+			Dock dock = new Dock();
+			dock.AssignShip(new System.Drawing.Size(4, 2), 200000);
+			List<ShipContainer> RightContainers = ContainerFactory.GenereateSpecificContainer(8000, ContainerMovement_V2.Objects.Enums.Types.ContainerTypes.Regular, 10);
+			List<ShipContainer> LeftContainers = ContainerFactory.GenereateSpecificContainer(3000, ContainerMovement_V2.Objects.Enums.Types.ContainerTypes.Regular, 20);
+			
+			//Act
+			//Assert
+		}
+
+		[TestMethod]
+		public void AllToTheRight_MiddleEven_UnEven()
+		{
+			//Arrange
+			Dock dock = new Dock();
+			//Act
+			//Assert
 		}
 	}
 }

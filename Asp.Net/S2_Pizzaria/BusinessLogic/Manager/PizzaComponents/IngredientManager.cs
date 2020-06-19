@@ -44,5 +44,13 @@ namespace BusinessLogic.Manager.PizzaComponents
 			var models = IngredientModelFactory.ConvertIngredients(ingredients);
 			return models;
 		}
+
+		public static IngredientModel GetIngredient(Guid Id)
+		{
+			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
+			var ingredient = unitOfWork.IngredientRepository.GetIngredient(Id);
+			var model = IngredientModelFactory.ConvertIngredient(ingredient);
+			return model;
+		}
 	}
 }

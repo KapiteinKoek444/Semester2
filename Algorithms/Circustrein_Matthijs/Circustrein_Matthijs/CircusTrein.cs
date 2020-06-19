@@ -19,6 +19,7 @@ namespace Circustrein_Matthijs
 		List<Animal> AllAnimalList = new List<Animal>();
 		List<Wagon> AllWagonList = new List<Wagon>();
 		int AnimalAmount;
+		int seed = 100;
 
 		public CircusTrein()
 		{
@@ -91,7 +92,7 @@ namespace Circustrein_Matthijs
 		{
 			int animalAmount = Convert.ToInt32(numUDAnimalCount.Value);
 
-			List<Animal> ToBeAddedAnimals = AnimalFactory.GenerateRandomAnimals(animalAmount);
+			List<Animal> ToBeAddedAnimals = AnimalFactory.GenerateRandomAnimals(animalAmount, seed);
 			AllAnimalList = AnimalFactory.MergeAnimalLists(AllAnimalList, ToBeAddedAnimals);
 
 			SetAnimalBox(AllAnimalList);
@@ -124,7 +125,7 @@ namespace Circustrein_Matthijs
 		{
 			int animalAmount = Convert.ToInt32(numUDAnimalCount.Value);
 
-			List<Animal> ToBeAddedAnimals = AnimalFactory.GenerateHerbivores(animalAmount);
+			List<Animal> ToBeAddedAnimals = AnimalFactory.GenerateHerbivores(animalAmount, seed);
 			AllAnimalList = AnimalFactory.MergeAnimalLists(AllAnimalList, ToBeAddedAnimals);
 
 			SetAnimalBox(AllAnimalList);
@@ -136,7 +137,7 @@ namespace Circustrein_Matthijs
 		{
 			int animalAmount = Convert.ToInt32(numUDAnimalCount.Value);
 
-			List<Animal> ToBeAddedAnimals = AnimalFactory.GenerateCarnivores(animalAmount);
+			List<Animal> ToBeAddedAnimals = AnimalFactory.GenerateCarnivores(animalAmount, seed);
 			AllAnimalList = AnimalFactory.MergeAnimalLists(AllAnimalList, ToBeAddedAnimals);
 
 			SetAnimalBox(AllAnimalList);

@@ -10,6 +10,7 @@ namespace Circustrein_UnitTest
 	[TestClass]
 	public class AnimalFactory_Test
 	{
+		int seed = 100;
 		[TestMethod]
 		public void GenerateRandomList_Test()
 		{
@@ -17,7 +18,7 @@ namespace Circustrein_UnitTest
 			int expectedAmount = 3;
 
 			//Act
-			List<Animal> actualAnimalList = AnimalFactory.GenerateRandomAnimals(expectedAmount);
+			List<Animal> actualAnimalList = AnimalFactory.GenerateRandomAnimals(expectedAmount, seed);
 
 			//Assert
 			Assert.AreEqual(expectedAmount, actualAnimalList.Count);
@@ -36,7 +37,7 @@ namespace Circustrein_UnitTest
 			}
 
 			//Act
-			List<Animal> actualCarnivoreList = AnimalFactory.GenerateCarnivores(amount);
+			List<Animal> actualCarnivoreList = AnimalFactory.GenerateCarnivores(amount, seed);
 
 			//Assert
 			Assert.AreEqual(expectedCarnivoreList[4].Food, actualCarnivoreList[4].Food);
@@ -55,7 +56,7 @@ namespace Circustrein_UnitTest
 			}
 
 			//Act
-			List<Animal> actualHerbivoreList = AnimalFactory.GenerateHerbivores(amount);
+			List<Animal> actualHerbivoreList = AnimalFactory.GenerateHerbivores(amount, seed);
 
 			//Assert
 			Assert.AreEqual(expectedHerbivoreList[2].Food, actualHerbivoreList[2].Food);

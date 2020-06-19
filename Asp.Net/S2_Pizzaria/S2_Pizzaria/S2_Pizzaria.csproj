@@ -310,7 +310,6 @@
     <Content Include="Views\Home\ViewPizzas.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\EditUser.cshtml" />
-    <Content Include="Views\Order\ViewOrder.cshtml" />
     <Content Include="Views\Manager\AddIngredient.cshtml" />
     <Content Include="Views\Order\PizzaBasePicker.cshtml" />
     <Content Include="Views\Order\BottomPicker.cshtml" />
@@ -332,6 +331,7 @@
     <Content Include="Views\ManageUser\UserDetails.cshtml" />
     <Content Include="Views\Home\ManagerChooser.cshtml" />
     <Content Include="Views\ManageUser\UserDelete.cshtml" />
+    <Content Include="Views\Order\AddOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

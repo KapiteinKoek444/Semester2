@@ -57,16 +57,46 @@
 				@Html.DisplayFor(modelItem => item.ContainsLactose)
 			</td>
 			<td>
-				<input type="checkbox" checked="" id="box">
+				<input type="checkbox" checked="checked" id="@item.Id">
 			</td>
 		</tr>
 	}
 </table>
 
-<form action="IngredientsPicker" method="post">
-	<input type="submit" value="Choose" class="btn btn-default" />
-</form>
-<script>
 
+<button onclick="SetIngredients()">Choose!</button>
+
+<script>
+	var checkboxes = document.getElementsByTagName('input');
+
+	for (var i = 0; i < checkboxes.length; i++) {
+		if (checkboxes[i].type == 'checkbox') {
+			checkboxes[i].checked = false;
+		}
+	}
+
+	
+	function SetIngredients() {
+		console.log("setting");
+		var Ids = new Array();
+
+		for (var i = 0; i < checkboxes.length; i++) {
+			if (checkboxes[i].checked == true) {
+				Ids.push(checkboxes[i].id);
+			}
+		}
+
+
+		$.ajax({
+			type: "POST",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(Ids),
+			url: "/Order/SetIngredients",
+
+			success: function (result) {
+				window.location.href = result.redirectTo;
+			}
+		})
+	}
 </script>
 

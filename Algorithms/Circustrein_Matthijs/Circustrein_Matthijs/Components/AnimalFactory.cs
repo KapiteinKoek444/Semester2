@@ -11,10 +11,10 @@ namespace Circustrein_Matthijs.Components
 	public class AnimalFactory
 	{
 
-		public static List<Animal> GenerateRandomAnimals(int amount)
+		public static List<Animal> GenerateRandomAnimals(int amount, int seed)
 		{
 			List<Animal> animals = new List<Animal>();
-			Random rnd = new Random();
+			Random rnd = new Random(seed);
 
 			for (int i = 0; i < amount; i++)
 			{
@@ -41,10 +41,10 @@ namespace Circustrein_Matthijs.Components
 			return animals;
 		}
 
-		public static List<Animal> GenerateCarnivores(int amount)
+		public static List<Animal> GenerateCarnivores(int amount, int seed)
 		{
 			List<Animal> animals = new List<Animal>();
-			Random rnd = new Random();
+			Random rnd = new Random(seed);
 
 			for (int i = 0; i < amount; i++)
 			{
@@ -64,10 +64,10 @@ namespace Circustrein_Matthijs.Components
 			return animals;
 		}
 
-		public static List<Animal> GenerateHerbivores(int amount)
+		public static List<Animal> GenerateHerbivores(int amount, int seed)
 		{
 			List<Animal> animals = new List<Animal>();
-			Random rnd = new Random();
+			Random rnd = new Random(seed);
 
 			for (int i = 0; i < amount; i++)
 			{
