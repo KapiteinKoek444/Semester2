@@ -12,7 +12,7 @@ namespace BusinessLogic.Factory.ModelFactories
 {
 	public static class BottomModelFacotry
 	{
-		public static List<BottomModel> ConvertBottom(List<Bottom> bottoms)
+		public static List<BottomModel> ConvertBottoms(List<Bottom> bottoms)
 		{
 			List<BottomModel> models = new List<BottomModel>();
 
@@ -27,6 +27,8 @@ namespace BusinessLogic.Factory.ModelFactories
 
 		public static BottomModel ConvertBottom(Bottom bottom)
 		{
+			if (bottom == null)
+				return null;
 			var sauceModel = SauceModelFactory.GetSauce(bottom.SauceId);
 
 			BottomModel model = new BottomModel()

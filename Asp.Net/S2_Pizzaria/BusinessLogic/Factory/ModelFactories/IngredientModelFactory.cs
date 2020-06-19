@@ -17,15 +17,17 @@ namespace BusinessLogic.Factory
 
 			foreach (var ing in ingredients)
 			{
-				var model = ConvertIngredients(ing);
+				var model = ConvertIngredient(ing);
 				models.Add(model);
 			}
 
 			return models;
 		}
 
-		public static IngredientModel ConvertIngredients(Ingredients ingredient)
+		public static IngredientModel ConvertIngredient(Ingredients ingredient)
 		{
+			if (ingredient == null)
+				return null;
 			IngredientModel model = new IngredientModel()
 			{
 				Id = ingredient.Id,
@@ -45,7 +47,7 @@ namespace BusinessLogic.Factory
 		{
 			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
 			var ingredient = unitOfWork.IngredientRepository.GetIngredient(Id);
-			var model = ConvertIngredients(ingredient);
+			var model = ConvertIngredient(ingredient);
 			return model;
 		}
 	}

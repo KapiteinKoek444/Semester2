@@ -18,9 +18,18 @@ namespace Repository.Repositories
 			Database = database;
 		}
 
+		public OrderRule RemoveOrderRule(Guid id)
+		{
+			var orderrule = Database.OrderRule.Find(id);
+			Database.OrderRule.Remove(orderrule);
+			Database.SaveChanges();
+			return orderrule;
+		}
+
 		public OrderRule AddOrderRule(OrderRule rule)
 		{
 			Database.OrderRule.Add(rule);
+			Database.SaveChanges();
 			return rule;
 		}
 

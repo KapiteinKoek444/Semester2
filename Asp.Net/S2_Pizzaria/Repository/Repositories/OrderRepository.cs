@@ -19,6 +19,14 @@ namespace Repository.Repositories
 			database = _database;
 		}
 
+		public Order RemoveOrder(Guid id)
+		{
+			var order = database.Order.Find(id);
+			database.Order.Remove(order);
+			database.SaveChanges();
+			return order;
+		}
+
 		public Order GetOrder(Order order)
 		{
 			return database.Order.Where(x => x.Id == order.Id).FirstOrDefault();
@@ -51,6 +59,7 @@ namespace Repository.Repositories
 		public Order AddOrder(Order order)
 		{
 			database.Order.Add(order);
+			database.SaveChanges();
 			return order;
 		}
 

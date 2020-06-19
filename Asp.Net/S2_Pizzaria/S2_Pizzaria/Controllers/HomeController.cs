@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogic.Manager.Pizza;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,17 +14,24 @@ namespace S2_Pizzaria.Controllers
 			return View();
 		}
 
+		public ActionResult ViewPizzas()
+		{
+			var pizzas = PizzaManager.getAllPizzas();
+			return View(pizzas);
+		}
+
 		public ActionResult About()
 		{
-			ViewBag.Message = "Your application description page.";
-
 			return View();
 		}
 
 		public ActionResult Contact()
 		{
-			ViewBag.Message = "Your contact page.";
+			return View();
+		}
 
+		public ActionResult ManagerChooser()
+		{
 			return View();
 		}
 	}

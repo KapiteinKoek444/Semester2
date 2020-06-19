@@ -10,7 +10,7 @@ namespace BusinessLogic.Factory
 {
 	public static class IngredientFactory
 	{
-		public static List<Ingredients> ConvertIngredientModel(List<IngredientModel> models)
+		public static List<Ingredients> ConvertIngredientModels(List<IngredientModel> models)
 		{
 			List<Ingredients> ingredients = new List<Ingredients>();
 
@@ -25,6 +25,9 @@ namespace BusinessLogic.Factory
 
 		public static Ingredients ConvertIngredientModel(IngredientModel model)
 		{
+			if (model == null)
+				return null;
+
 			Ingredients ingredient = new Ingredients
 			{
 				Id = model.Id,

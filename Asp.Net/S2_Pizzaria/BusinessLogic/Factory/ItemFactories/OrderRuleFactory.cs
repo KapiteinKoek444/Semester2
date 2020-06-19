@@ -10,7 +10,7 @@ namespace BusinessLogic.Factory.ItemFactories
 {
 	public static class OrderRuleFactory
 	{
-		public static List<OrderRule> ConvertOrderRuleModel(List<OrderRuleModel> orderRuleModels)
+		public static List<OrderRule> ConvertOrderRuleModels(List<OrderRuleModel> orderRuleModels)
 		{
 			List<OrderRule> orderRules = new List<OrderRule>();
 			
@@ -25,6 +25,9 @@ namespace BusinessLogic.Factory.ItemFactories
 
 		public static OrderRule ConvertOrderRuleModel(OrderRuleModel model)
 		{
+			if (model == null)
+				return null;
+
 			OrderRule orderRule = new OrderRule()
 			{
 				Id = model.Id,

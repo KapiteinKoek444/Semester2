@@ -10,7 +10,7 @@ namespace BusinessLogic.Factory
 {
 	public static class UserModelFactory
 	{
-		public static List<UserModel> ConvertUser(List<User> users)
+		public static List<UserModel> ConvertUsers(List<User> users)
 		{
 			List<UserModel> userModels = new List<UserModel>();
 
@@ -24,6 +24,8 @@ namespace BusinessLogic.Factory
 
 		public static UserModel ConvertUser(User user)
 		{
+			if (user == null)
+				return null;
 			var order = OrderModelFactory.GetOrderModel(user.OrderId);
 			UserModel customerMod = new UserModel
 			{

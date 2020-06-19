@@ -16,16 +16,19 @@ namespace BusinessLogic.Factory.ItemFactories
 			List<Order> orders = new List<Order>();
 			foreach (var model in models)
 			{
-				var order = ConvertOrderModels(model);
+				var order = ConvertOrderModel(model);
 				orders.Add(order);
 			}
 
 			return orders;
 		}
 
-		public static Order ConvertOrderModels(OrderModel model)
+		public static Order ConvertOrderModel(OrderModel model)
 		{
-			var orderRules = OrderRuleFactory.ConvertOrderRuleModel(model.OrderRules);
+			if (model == null)
+				return null;
+
+			var orderRules = OrderRuleFactory.ConvertOrderRuleModels(model.OrderRules);
 
 			Order order = new Order()
 			{

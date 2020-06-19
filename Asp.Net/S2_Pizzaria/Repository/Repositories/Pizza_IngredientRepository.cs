@@ -19,9 +19,18 @@ namespace Repository.Repositories
 			Database = database;
 		}
 
+		public Pizza_Ingredient RemovePizIngredient(Guid id)
+		{
+			var pizing = Database.PizzaIngredient.Find(id);
+			Database.PizzaIngredient.Remove(pizing);
+			Database.SaveChanges();
+			return pizing;
+		}
+
 		public Pizza_Ingredient AddPizza_Ingredients(Pizza_Ingredient pizIng)
 		{
 			Database.PizzaIngredient.Add(pizIng);
+			Database.SaveChanges();
 			return pizIng;
 		}
 

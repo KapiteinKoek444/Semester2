@@ -21,12 +21,15 @@ namespace Repository.Repositories
 		public Pizza AddPizza(Pizza pizza)
 		{
 			database.Pizzas.Add(pizza);
+			database.SaveChanges();
 			return pizza;
 		}
 
-		public void RemovePizza(Pizza pizza)
+		public void RemovePizza(Guid id)
 		{
+			var pizza = database.Pizzas.Find(id);
 			database.Pizzas.Remove(pizza);
+			database.SaveChanges();
 		}
 
 		public Pizza GetPizza(Pizza pizza)

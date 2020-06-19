@@ -15,15 +15,18 @@ namespace BusinessLogic.Factory.ItemFactories
 			List<Pizza_Ingredient> pizIngs = new List<Pizza_Ingredient>();
 			foreach (var model in models)
 			{
-				var pizIng = ConvertPizzaIngredientModels(model);
+				var pizIng = ConvertPizzaIngredientModel(model);
 				pizIngs.Add(pizIng);
 			}
 
 			return pizIngs;
 		}
 
-		public static Pizza_Ingredient ConvertPizzaIngredientModels(PizzaIngredientModel model)
+		public static Pizza_Ingredient ConvertPizzaIngredientModel(PizzaIngredientModel model)
 		{
+			if (model == null)
+				return null;
+
 			Pizza_Ingredient pizINg = new Pizza_Ingredient()
 			{
 				Id = model.Id,

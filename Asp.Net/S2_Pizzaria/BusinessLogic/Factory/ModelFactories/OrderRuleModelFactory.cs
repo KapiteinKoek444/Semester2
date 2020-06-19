@@ -16,15 +16,17 @@ namespace BusinessLogic.Factory.ModelFactories
 			List<OrderRuleModel> models = new List<OrderRuleModel>();
 			foreach(var orderrule in orderrules)
 			{
-				var model = ConvertOrderRules(orderrule);
+				var model = ConvertOrderRule(orderrule);
 				models.Add(model);
 			}
 
 			return models;
 		}
 
-		public static OrderRuleModel ConvertOrderRules(OrderRule orderrule)
+		public static OrderRuleModel ConvertOrderRule(OrderRule orderrule)
 		{
+			if (orderrule == null)
+				return null;
 			var pizzaModel = PizzaModelFactory.GetPizzaModel(orderrule.PizzaId);
 			OrderRuleModel model = new OrderRuleModel
 			{
@@ -40,7 +42,7 @@ namespace BusinessLogic.Factory.ModelFactories
 		{
 			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
 			var orderrule = unitOfWork.OrderRuleRepository.GetOrderRule(Id);
-			var model = ConvertOrderRules(orderrule);
+			var model = ConvertOrderRule(orderrule);
 			return model;
 		}
 	}

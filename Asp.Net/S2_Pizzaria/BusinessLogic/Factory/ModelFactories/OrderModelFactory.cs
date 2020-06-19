@@ -18,14 +18,16 @@ namespace BusinessLogic.Factory.ModelFactories
 			List<OrderModel> models = new List<OrderModel>();
 			foreach (var order in orders)
 			{
-				var model = ConvertOrders(order);
+				var model = ConvertOrder(order);
 				models.Add(model);
 			}
 			return models;
 		}
 
-		public static OrderModel ConvertOrders(Order order)
+		public static OrderModel ConvertOrder(Order order)
 		{
+			if (order == null)
+				return null;
 			var OrderRules = OrderRuleModelFactory.ConvertOrderRules(order.OrderRule);
 			OrderModel model = new OrderModel()
 			{
@@ -41,7 +43,7 @@ namespace BusinessLogic.Factory.ModelFactories
 		{
 			UnitOfWorkRepository unitofWork = new UnitOfWorkRepository();
 			var order = unitofWork.OrderRepository.GetOrderId(Id);
-			var model = ConvertOrders(order);
+			var model = ConvertOrder(order);
 			return model;
 		}
 	}

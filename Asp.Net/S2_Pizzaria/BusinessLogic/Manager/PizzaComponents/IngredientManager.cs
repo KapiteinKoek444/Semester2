@@ -11,6 +11,13 @@ namespace BusinessLogic.Manager.PizzaComponents
 {
 	public static class IngredientManager
 	{
+		public static void RemoveIngredient(IngredientModel model)
+		{
+			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
+			var ingredient = IngredientFactory.ConvertIngredientModel(model);
+			unitOfWork.IngredientRepository.RemoveIngredient(ingredient.Id);
+		}
+
 		public static List<IngredientModel> AddIngredients(List<IngredientModel> models)
 		{
 			foreach (var model in models)
@@ -24,6 +31,7 @@ namespace BusinessLogic.Manager.PizzaComponents
 		public static IngredientModel AddIngredient(IngredientModel model)
 		{
 			UnitOfWorkRepository unitOfWork = new UnitOfWorkRepository();
+			model.Id = Guid.NewGuid(); 
 			var ingredient = IngredientFactory.ConvertIngredientModel(model);
 			unitOfWork.IngredientRepository.AddIngredient(ingredient);
 			return model;

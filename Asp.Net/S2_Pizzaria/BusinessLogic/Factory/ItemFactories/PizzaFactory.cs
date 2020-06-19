@@ -13,11 +13,11 @@ namespace BusinessLogic.Factory
 {
 	public static class PizzaFactory
 	{
-		public static List<Pizza> ConvertPizzaModel(List<PizzaModel> models)
+		public static List<Pizza> ConvertPizzaModels(List<PizzaModel> models)
 		{
 			List<Pizza> pizzas = new List<Pizza>();
 
-			foreach(var model in models)
+			foreach (var model in models)
 			{
 				var pizza = ConvertPizzaModel(model);
 				pizzas.Add(pizza);
@@ -25,16 +25,26 @@ namespace BusinessLogic.Factory
 
 			return pizzas;
 		}
-		
+
 		public static Pizza ConvertPizzaModel(PizzaModel model)
 		{
-			var pizzaIngredient = PizzaIngredientFactory.ConvertPizzaIngredientModels(model.PizzaIngredients);
+			List<Pizza_Ingredient> pizzaIngredient = new List<Pizza_Ingredient>();
+			Bottom bottom = new Bottom();
+
+			if (model == null)
+				return null;
+
+			if (model.PizzaIngredients != null)
+				pizzaIngredient = PizzaIngredientFactory.ConvertPizzaIngredientModels(model.PizzaIngredients);
+
+			if (model.Bottom != null)
+				bottom = BottomFactory.ConvertBottom(model.Bottom);
 
 			Pizza pizza = new Pizza
 			{
 				Id = model.Id,
 				Name = model.Name,
-				BottomId = model.Bottom.Id,
+				BottomId = bottom.Id,
 				Price = model.Price,
 				OrderRuleId = model.OrderRuleId,
 				PizzaIngredient = pizzaIngredient

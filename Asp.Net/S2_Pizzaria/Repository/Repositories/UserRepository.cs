@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,13 @@ namespace Repository.Repositories
 		public UserRepository(PizzariaDB _database)
 		{
 			database = _database;
+		}
+
+		public void RemoveUser(Guid id)
+		{
+			User user = database.Users.Find(id);
+			database.Users.Remove(user);
+			database.SaveChanges();
 		}
 
 		public User AddUser(User user)

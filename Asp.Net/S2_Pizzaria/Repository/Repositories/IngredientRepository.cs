@@ -30,9 +30,11 @@ namespace Repository.Repositories
 			database.SaveChanges();
 		}
 
-		public void RemoveIngredient(Ingredients ingredient)
+		public void RemoveIngredient(Guid id)
 		{
+			var ingredient = database.Ingredient.Find(id);
 			database.Ingredient.Remove(ingredient);
+			database.SaveChanges();
 		}
 
 		public List<Ingredients> GetAllIngredients()

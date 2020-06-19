@@ -11,7 +11,7 @@ namespace BusinessLogic.Factory.ModelFactories
 {
 	public static class PizzaIngredientModelFactory
 	{
-		public static List<PizzaIngredientModel> ConvertPizzaIngredient(List<Pizza_Ingredient> pizzaIngredients)
+		public static List<PizzaIngredientModel> ConvertPizzaIngredients(List<Pizza_Ingredient> pizzaIngredients)
 		{
 			List<PizzaIngredientModel> models = new List<PizzaIngredientModel>();
 
@@ -26,6 +26,8 @@ namespace BusinessLogic.Factory.ModelFactories
 
 		public static PizzaIngredientModel ConvertPizzaIngredient(Pizza_Ingredient pizIng)
 		{
+			if (pizIng == null)
+				return null;
 			var ingredient = IngredientModelFactory.GetIngredientModel(pizIng.IngriedientId);
 
 			PizzaIngredientModel model = new PizzaIngredientModel

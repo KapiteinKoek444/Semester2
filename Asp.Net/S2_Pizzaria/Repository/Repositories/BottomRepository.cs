@@ -34,12 +34,15 @@ namespace Repository.Repositories
 		public Bottom AddBottom(Bottom bottom)
 		{
 			database.Bottom.Add(bottom);
+			database.SaveChanges();
 			return bottom;
 		}
 
-		public Bottom RemoveBottom(Bottom bottom)
+		public Bottom RemoveBottom(Guid id)
 		{
+			var bottom = database.Bottom.Find(id);
 			database.Bottom.Remove(bottom);
+			database.SaveChanges();
 			return bottom;
 		}
 

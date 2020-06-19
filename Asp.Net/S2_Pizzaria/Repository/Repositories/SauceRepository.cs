@@ -21,12 +21,15 @@ namespace Repository.Repositories
 		public Sauce AddSauce(Sauce sauce)
 		{
 			database.Sauce.Add(sauce);
+			database.SaveChanges();
 			return sauce;
 		}
 
-		public void RemoveSauce(Sauce sauce)
+		public void RemoveSauce(Guid id)
 		{
+			var sauce = database.Sauce.Find(id);
 			database.Sauce.Remove(sauce);
+			database.SaveChanges();
 		}
 
 		public Sauce GetSauce(Sauce sauce)

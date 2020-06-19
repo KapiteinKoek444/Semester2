@@ -11,7 +11,7 @@ namespace BusinessLogic.Factory.ModelFactories
 {
 	public static class SauceModelFactory
 	{
-		public static List<SauceModel> ConvertSauce(List<Sauce> sauces)
+		public static List<SauceModel> ConvertSauces(List<Sauce> sauces)
 		{
 			List<SauceModel> models = new List<SauceModel>();
 
@@ -26,6 +26,8 @@ namespace BusinessLogic.Factory.ModelFactories
 
 		public static SauceModel ConvertSauce(Sauce sauce)
 		{
+			if (sauce == null)
+				return null;
 			SauceModel model = new SauceModel()
 			{
 				Id = sauce.Id,
